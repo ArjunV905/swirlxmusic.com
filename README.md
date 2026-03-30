@@ -1,6 +1,6 @@
-# Artist Website Template
+# swirlxmusic.com
 
-A modern, SEO-optimized single-page website template for music artists. Built with [Astro](https://astro.build), React, and deployable to [Vercel](https://vercel.com) with zero configuration.
+An artist website built for Swirlx. Built with [Astro](https://astro.build), [React](https://react.dev), and deployable to [Vercel](https://vercel.com) with zero configuration.
 
 **Customize the entire site by editing a single file** — `src/config/artist.ts`.
 
