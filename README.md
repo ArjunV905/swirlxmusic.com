@@ -31,8 +31,8 @@ An artist website built for Swirlx. Built with [Astro](https://astro.build), [Re
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/artist-website.git
-cd artist-website
+git clone https://github.com/ArjunV905/swirlxmusic.com.git
+cd swirlxmusic.com
 
 # 2. Install dependencies
 npm install
@@ -61,41 +61,6 @@ npm run preview
 4. Done. Your site is live.
 
 > Remember to update `artist.seo.siteUrl` and the `site` field in `astro.config.mjs` to match your production domain.
-
----
-
-## Project Structure
-
-```
-src/
-  config/
-    artist.ts          ← THE ONLY FILE YOU NEED TO EDIT
-    validate.ts        ← Build-time validation (don't edit)
-  layouts/
-    Layout.astro       ← HTML shell, SEO meta, theme injection
-  components/
-    Hero.astro         ← Full-viewport hero section
-    ParticleCanvas.tsx ← Interactive particle animation (React)
-    NavLinks.astro     ← Navigation links (auto-hides unused)
-    SocialIcons.astro  ← Social media icon row
-    LatestRelease.astro← New release CTA banner
-    TopTracks.astro    ← Spotify embed
-    TourDates.astro    ← Bandsintown widget
-    Newsletter.astro   ← Email signup form
-    About.astro        ← Bio + photo
-    Contact.astro      ← Contact entries grid
-    Footer.astro       ← Logo + copyright + social links
-  icons/
-    *.astro            ← SVG icon components
-  styles/
-    global.css         ← Reset, typography, section base styles
-  pages/
-    index.astro        ← Home page (assembles all sections)
-public/
-  images/              ← Place your images here
-  fonts/               ← Place custom font files here (if any)
-  favicon.svg          ← Replace with your favicon
-```
 
 ---
 
@@ -223,28 +188,40 @@ For deeper customization:
 - **Icons**: Add new SVG icons in `src/icons/` following the existing pattern
 - **Astro config**: `astro.config.mjs` controls build output, integrations, and deployment adapter
 
----
-
-## Commands
-
-| Command | Action |
-|---|---|
-| `npm install` | Install dependencies |
-| `npm run dev` | Start dev server at `localhost:4321` |
-| `npm run build` | Build for production into `./dist/` |
-| `npm run preview` | Preview production build locally |
 
 ---
 
-## Tech Stack
+## Project Structure
 
-- [Astro](https://astro.build) — static site framework
-- [React](https://react.dev) — used for the interactive particle canvas
-- [Vercel](https://vercel.com) — hosting and deployment
-- TypeScript — type-safe configuration
+```
+src/
+  config/
+    artist.ts          ← THE ONLY FILE YOU NEED TO EDIT
+    validate.ts        ← Build-time validation (don't edit)
+  layouts/
+    Layout.astro       ← HTML shell, SEO meta, theme injection
+  components/
+    Hero.astro         ← Full-viewport hero section
+    ParticleCanvas.tsx ← Interactive particle animation (React)
+    NavLinks.astro     ← Navigation links (auto-hides unused)
+    SocialIcons.astro  ← Social media icon row
+    LatestRelease.astro← New release CTA banner
+    TopTracks.astro    ← Spotify embed
+    TourDates.astro    ← Bandsintown widget
+    Newsletter.astro   ← Email signup form
+    About.astro        ← Bio + photo
+    Contact.astro      ← Contact entries grid
+    Footer.astro       ← Logo + copyright + social links
+  icons/
+    *.astro            ← SVG icon components
+  styles/
+    global.css         ← Reset, typography, section base styles
+  pages/
+    index.astro        ← Home page (assembles all sections)
+public/
+  images/              ← Place your images here
+  fonts/               ← Place custom font files here (if any)
+  favicon.svg          ← Replace with your favicon
+```
 
 ---
-
-## License
-
-MIT
