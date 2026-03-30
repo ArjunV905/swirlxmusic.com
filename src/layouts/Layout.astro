@@ -1,0 +1,101 @@
+---
+import { artist, theme, socials } from "../config/artist";
+import { validateConfig } from "../config/validate";
+import "../styles/global.css";
+
+validateConfig();
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = artist.seo.title,
+  description = artist.seo.description,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, artist.seo.siteUrl).href;
+const ogImage = artist.seo.ogImage
+  ? new URL(artist.seo.ogImage, artist.seo.siteUrl).href
+  : null;
+
+const headingFont = theme.fontHeading.replace(/\s+/g, "+");
+const bodyFont = theme.fontBody.replace(/\s+/g, "+");
+const fontsParam =
+  headingFont === bodyFont
+    ? `family=${headingFont}:wght@400;500;600;700`
+    : `family=${headingFont}:wght@400;500;600;700&family=${bodyFont}:wght@300;400;500;600`;
+const googleFontsUrl = `https://fonts.googleapis.com/css2?${fontsParam}&display=swap`;
+
+const activeSocials = Object.entries(socials).filter(
+  ([, url]) => url != null && url.trim() !== ""
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: artist.name,
+  url: artist.seo.siteUrl,
+  description: artist.seo.description,
+  ...(ogImage && { image: ogImage }),
+  sameAs: activeSocials.map(([, url]) => url),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {artist.seo.keywords.length > 0 && (
+      <meta name="keywords" content={artist.seo.keywords.join(", ")} />
+    )}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={artist.favicon} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={googleFontsUrl} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Theme CSS Custom Properties -->
+    <style
+      define:vars={{
+        "color-primary": theme.primaryColor,
+        "color-accent": theme.accentColor,
+        "color-bg": theme.backgroundColor,
+        "color-surface": theme.surfaceColor,
+        "color-text": theme.textColor,
+        "font-heading": `'${theme.fontHeading}', sans-serif`,
+        "font-body": `'${theme.fontBody}', sans-serif`,
+      }}
+    >
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

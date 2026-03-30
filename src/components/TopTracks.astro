@@ -1,0 +1,29 @@
+---
+import { topTracks } from "../config/artist";
+
+if (!topTracks.enabled) return;
+---
+
+<section class="section" id="top-tracks">
+  <div class="section__inner tracks">
+    <h2 class="section__heading">Top Tracks</h2>
+    <div class="tracks__embed">
+      <iframe
+        src={topTracks.spotifyEmbedUrl}
+        width="100%"
+        height="380"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        style="border-radius: 12px; border: 0;"
+        title="Spotify top tracks"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tracks__embed {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+</style>

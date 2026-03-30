@@ -1,0 +1,12 @@
+export { default as SpotifyIcon } from "./Spotify.astro";
+export { default as AppleMusicIcon } from "./AppleMusic.astro";
+export { default as YouTubeIcon } from "./YouTube.astro";
+export { default as InstagramIcon } from "./Instagram.astro";
+export { default as TikTokIcon } from "./TikTok.astro";
+export { default as TwitterIcon } from "./Twitter.astro";
+export { default as FacebookIcon } from "./Facebook.astro";
+export { default as SoundCloudIcon } from "./SoundCloud.astro";
+export { default as BandcampIcon } from "./Bandcamp.astro";
+export { default as TidalIcon } from "./Tidal.astro";
+export { default as LinktreeIcon } from "./Linktree.astro";
+export { default as EmailIcon } from "./Email.astro";

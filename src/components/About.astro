@@ -1,0 +1,59 @@
+---
+import { about } from "../config/artist";
+---
+
+<section class="section section--surface" id="about">
+  <div class="section__inner about">
+    <h2 class="section__heading">{about.heading}</h2>
+    <div class="about__content">
+      <img
+        src={about.image}
+        alt={about.imageAlt}
+        class="about__image"
+        width="500"
+        height="600"
+        loading="lazy"
+      />
+      <div class="about__text" set:html={about.bio} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .about__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 5 / 6;
+  }
+
+  .about__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0.85;
+  }
+
+  .about__text :global(p + p) {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .about__content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .about__image {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>

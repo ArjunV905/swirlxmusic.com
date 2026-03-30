@@ -1,0 +1,101 @@
+---
+import { socials, type SocialsConfig } from "../config/artist";
+
+import SpotifyIcon from "../icons/Spotify.astro";
+import AppleMusicIcon from "../icons/AppleMusic.astro";
+import YouTubeIcon from "../icons/YouTube.astro";
+import InstagramIcon from "../icons/Instagram.astro";
+import TikTokIcon from "../icons/TikTok.astro";
+import TwitterIcon from "../icons/Twitter.astro";
+import FacebookIcon from "../icons/Facebook.astro";
+import SoundCloudIcon from "../icons/SoundCloud.astro";
+import BandcampIcon from "../icons/Bandcamp.astro";
+import TidalIcon from "../icons/Tidal.astro";
+import LinktreeIcon from "../icons/Linktree.astro";
+
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 22, class: className = "" } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  spotify: SpotifyIcon,
+  appleMusic: AppleMusicIcon,
+  youtube: YouTubeIcon,
+  instagram: InstagramIcon,
+  tiktok: TikTokIcon,
+  twitter: TwitterIcon,
+  facebook: FacebookIcon,
+  soundcloud: SoundCloudIcon,
+  bandcamp: BandcampIcon,
+  tidal: TidalIcon,
+  linktree: LinktreeIcon,
+};
+
+const platformLabels: Record<string, string> = {
+  spotify: "Spotify",
+  appleMusic: "Apple Music",
+  youtube: "YouTube",
+  instagram: "Instagram",
+  tiktok: "TikTok",
+  twitter: "X (Twitter)",
+  facebook: "Facebook",
+  soundcloud: "SoundCloud",
+  bandcamp: "Bandcamp",
+  tidal: "Tidal",
+  linktree: "Linktree",
+};
+
+const activeSocials = Object.entries(socials).filter(
+  ([, url]) => url != null && url!.trim() !== ""
+) as [keyof SocialsConfig, string][];
+---
+
+{activeSocials.length > 0 && (
+  <ul class:list={["social-icons", className]} role="list">
+    {activeSocials.map(([platform, url]) => {
+      const Icon = iconMap[platform];
+      const label = platformLabels[platform] || platform;
+      return (
+        <li>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            class="social-icons__link"
+          >
+            <Icon size={size} />
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+)}
+
+<style>
+  .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .social-icons__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .social-icons__link:hover {
+    opacity: 1;
+    color: var(--color-accent);
+    transform: scale(1.15);
+  }
+</style>

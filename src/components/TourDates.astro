@@ -1,0 +1,41 @@
+---
+import { tourDates, theme } from "../config/artist";
+
+if (!tourDates.enabled) return;
+
+const artistName = encodeURIComponent(tourDates.bandsintown.artistName);
+---
+
+<section class="section section--surface" id="shows">
+  <div class="section__inner tour">
+    <h2 class="section__heading">Upcoming Shows</h2>
+    <div class="tour__widget" id="bandsintown-widget">
+      <a
+        class="bit-widget-initializer"
+        data-artist-name={tourDates.bandsintown.artistName}
+        data-display-local-dates="false"
+        data-display-past-dates="false"
+        data-auto-style="false"
+        data-text-color={theme.textColor}
+        data-link-color={theme.accentColor}
+        data-background-color="transparent"
+        data-display-limit="10"
+        data-display-start-time="false"
+        data-link-text-color={theme.textColor}
+        data-display-lineup="false"
+        data-display-play-my-city="true"
+        data-separator-color="rgba(255,255,255,0.1)"
+      ></a>
+    </div>
+  </div>
+</section>
+
+<script is:inline src="https://widgetv3.bandsintown.com/main.min.js"></script>
+
+<style>
+  .tour__widget {
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 200px;
+  }
+</style>
