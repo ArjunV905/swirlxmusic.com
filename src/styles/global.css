@@ -80,11 +80,6 @@ p {
   position: relative;
   z-index: 1;
   padding: 5rem 2rem;
-  background-color: var(--color-bg);
-}
-
-.section--surface {
-  background-color: var(--color-surface);
 }
 
 .section__inner {

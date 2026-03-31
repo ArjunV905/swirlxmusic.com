@@ -1,4 +1,4 @@
-import { artist, theme, about, contact } from "./artist";
+import { artist, theme, about, contact } from "../config/artist";
 
 function fail(field: string, message: string): never {
   throw new Error(

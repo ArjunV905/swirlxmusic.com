@@ -1,12 +1,14 @@
 ---
 import { tourDates, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
 
 if (!tourDates.enabled) return;
 
 const artistName = encodeURIComponent(tourDates.bandsintown.artistName);
+const { style: sectionStyle } = getSectionStyles(tourDates, theme.surfaceColor);
 ---
 
-<section class="section section--surface" id="shows">
+<section class="section" style={sectionStyle} id="shows">
   <div class="section__inner tour">
     <h2 class="section__heading">Upcoming Shows</h2>
     <div class="tour__widget" id="bandsintown-widget">

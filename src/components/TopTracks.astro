@@ -1,10 +1,13 @@
 ---
-import { topTracks } from "../config/artist";
+import { topTracks, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
 
 if (!topTracks.enabled) return;
+
+const { style: sectionStyle } = getSectionStyles(topTracks, theme.backgroundColor);
 ---
 
-<section class="section" id="top-tracks">
+<section class="section" style={sectionStyle} id="top-tracks">
   <div class="section__inner tracks">
     <h2 class="section__heading">Top Tracks</h2>
     <div class="tracks__embed">

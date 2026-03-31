@@ -1,8 +1,11 @@
 ---
-import { contact } from "../config/artist";
+import { contact, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
+
+const { style: sectionStyle } = getSectionStyles(contact, theme.backgroundColor);
 ---
 
-<section class="section" id="contact">
+<section class="section" style={sectionStyle} id="contact">
   <div class="section__inner contact">
     <h2 class="section__heading">{contact.heading}</h2>
     <div class="contact__grid">

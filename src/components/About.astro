@@ -1,8 +1,11 @@
 ---
-import { about } from "../config/artist";
+import { about, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
+
+const { style: sectionStyle } = getSectionStyles(about, theme.surfaceColor);
 ---
 
-<section class="section section--surface" id="about">
+<section class="section" style={sectionStyle} id="about">
   <div class="section__inner about">
     <h2 class="section__heading">{about.heading}</h2>
     <div class="about__content">

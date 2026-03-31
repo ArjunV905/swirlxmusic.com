@@ -1,10 +1,13 @@
 ---
-import { newsletter } from "../config/artist";
+import { newsletter, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
 
 if (!newsletter.enabled) return;
+
+const { style: sectionStyle } = getSectionStyles(newsletter, theme.backgroundColor);
 ---
 
-<section class="section" id="newsletter">
+<section class="section" style={sectionStyle} id="newsletter">
   <div class="section__inner nl">
     <h2 class="section__heading">{newsletter.heading}</h2>
     {newsletter.subheading && (

@@ -1,7 +1,10 @@
 ---
-import { latestRelease } from "../config/artist";
+import { latestRelease, theme } from "../config/artist";
+import { getSectionStyles } from "../utils/sectionStyle";
 
 if (!latestRelease.enabled) return;
+
+const { style: sectionStyle } = getSectionStyles(latestRelease, theme.surfaceColor);
 
 const platformLabels: Record<string, string> = {
   spotify: "Spotify",
@@ -15,7 +18,7 @@ const platformLabels: Record<string, string> = {
 };
 ---
 
-<section class="section section--surface" id="latest-release">
+<section class="section" style={sectionStyle} id="latest-release">
   <div class="section__inner release">
     <p class="release__tagline">{latestRelease.tagline}</p>
     <div class="release__content">

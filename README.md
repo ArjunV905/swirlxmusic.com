@@ -114,6 +114,17 @@ Supported platforms: `spotify`, `appleMusic`, `youtube`, `instagram`, `tiktok`, 
 | `animationEnabled` | `boolean` | Whether to show the particle animation. Can be combined with `backgroundImage` to overlay particles on top of an image. |
 | `particleColor` | `string` | Color of particles in the animation (hex). Defaults to accent color. |
 
+### Section Background Customization
+
+Every content section (latestRelease, topTracks, tourDates, newsletter, about, contact) supports two additional fields for background customization:
+
+| Field | Type | Description |
+|---|---|---|
+| `backgroundColorOverride` | `string \| null` | Override the section's default background color (hex). `null` = use theme default. |
+| `backgroundImage` | `string \| null` | Path to a background image for the section. Centered and cropped (cover). `null` = no image. |
+
+Priority: theme color < `backgroundColorOverride` < `backgroundImage`. If a background image is set, it renders on top of the background color (which still shows during image load).
+
 ### `latestRelease` (optional)
 
 | Field | Type | Description |
@@ -198,7 +209,6 @@ For deeper customization:
 src/
   config/
     artist.ts          ← THE ONLY FILE YOU NEED TO EDIT
-    validate.ts        ← Build-time validation (don't edit)
   layouts/
     Layout.astro       ← HTML shell, SEO meta, theme injection
   components/
@@ -213,6 +223,9 @@ src/
     About.astro        ← Bio + photo
     Contact.astro      ← Contact entries grid
     Footer.astro       ← Logo + copyright + social links
+  utils/
+    validate.ts        ← Build-time validation (don't edit)
+    sectionStyle.ts    ← Section background helper (don't edit)
   icons/
     *.astro            ← SVG icon components
   styles/
