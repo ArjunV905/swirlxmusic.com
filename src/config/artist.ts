@@ -141,16 +141,16 @@ export const artist: ArtistConfig = {
  */
 export const socials: SocialsConfig = {
   spotify: "https://open.spotify.com/artist/0aMStIm5O84kBbnZWsukHW",
-  appleMusic: null,
-  youtube: null,
+  appleMusic: "https://music.apple.com/us/artist/swirlx/1762903367",
+  youtube: "https://www.youtube.com/channel/UCpr_X2AXBeK1uID2B8dWnvg",
   instagram: "https://www.instagram.com/swirlxmusic",
-  tiktok: null,
-  twitter: null,
+  tiktok: "https://www.tiktok.com/@swirlxmusic",
+  twitter: null, // "https://x.com/swirlxmusic/",
   facebook: null,
-  soundcloud: null,
-  bandcamp: null,
-  tidal: null,
-  linktree: null,
+  soundcloud: "https://soundcloud.com/swirlx",
+  bandcamp: "https://swirlx.bandcamp.com/",
+  tidal: "https://tidal.com/artist/49679136",
+  linktree: "https://linktr.ee/swirlx",
 };
 
 /** 
@@ -204,7 +204,7 @@ export const topTracks: TopTracksConfig = {
 export const tourDates: TourDatesConfig = {
   enabled: true,
   bandsintown: {
-    artistName: "id_10442627", // Artist ID can be found in the Bandsintown URL. Example: https://www.bandsintown.com/a/15606169
+    artistName: "id_15606169", // Artist ID can be found in the Bandsintown URL. Example: https://www.bandsintown.com/a/15606169
   },
 
   backgroundColorOverride: null,
@@ -216,7 +216,7 @@ export const newsletter: NewsletterConfig = {
   enabled: false,
   heading: "Newsletter",
   subheading: "Get updates on new releases, shows, and more.",
-  
+
   backgroundColorOverride: null,
   backgroundImage: null,
 };
