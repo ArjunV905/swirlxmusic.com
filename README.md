@@ -131,10 +131,11 @@ Priority: theme color < `backgroundColorOverride` < `backgroundImage`. If a back
 |---|---|---|
 | `enabled` | `boolean` | Show/hide this section |
 | `tagline` | `string` | CTA text above the release (e.g. `"OUT NOW"`) |
+| `releaseType` | `string` | Type label shown above the title (e.g. `"Single"`, `"EP"`, `"Album"`) |
 | `title` | `string` | Release title |
 | `image` | `string` | Path to album artwork |
 | `imageAlt` | `string` | Alt text for the artwork |
-| `streamingLinks` | `array` | Array of `{ platform, url, label? }` objects |
+| `streamingLinks` | `array` | Array of `{ label, url }` objects (e.g. `{ label: "Spotify", url: "https://..." }`) |
 
 ### `topTracks` (optional)
 

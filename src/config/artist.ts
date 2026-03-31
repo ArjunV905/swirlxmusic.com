@@ -9,9 +9,8 @@
 // --- Types -------------------------------------------------------------------
 
 export interface StreamingLink {
-  platform: string;
+  label: string;
   url: string;
-  label?: string;
 }
 
 export interface ContactEntry {
@@ -71,6 +70,7 @@ export interface SectionStyle {
 export interface LatestReleaseConfig extends SectionStyle {
   enabled: boolean;
   tagline: string;
+  releaseType: string;
   title: string;
   image: string;
   imageAlt: string;
@@ -109,7 +109,7 @@ export interface ContactConfig extends SectionStyle {
   entries: ContactEntry[];
 }
 
-// --- Configuration -----------------------------------------------------------
+// --- Main Configuration -----------------------------------------------------------
 
 /** [REQUIRED] Visual theme — colors and fonts */
 export const theme: ThemeConfig = {
@@ -164,23 +164,29 @@ export const externalLinks = {
   epk: "/Swirlx EPK.pdf",
 };
 
-/** Hero section — customize the background image and animation */
+/** 
+ * Hero section 
+ * Customize the background image and animation 
+ */
 export const hero: HeroConfig = {
   backgroundImage: "/images/thumbnail.jpg",
   animationEnabled: true,
   particleColor: theme.accentColor, // or use Hex codes like "#6c63ff"
 };
 
+
+// --- Sections Configuration -----------------------------------------------------------
+
 /** [OPTIONAL] Latest music release CTA */
 export const latestRelease: LatestReleaseConfig = {
   enabled: true,
   tagline: "OUT NOW",
+  releaseType: "Single",
   title: "Chasing Fire",
   image: "/images/Chasing Fire.png",
-  imageAlt: "Chasing Fire artwork",
+  imageAlt: "Chasing Fire",
   streamingLinks: [
-    { platform: "spotify", url: "https://open.spotify.com/track/7w8xfJYoc2Hi6VfZLvd8JS?si=3d7b50ad97e9411c", label: "Spotify" },
-    // { platform: "appleMusic", url: "https://music.apple.com/...", label: "Apple Music" },
+    { label: "Listen Now", url: "https://www.submithub.com/link/swirlx-chasing-fire" },
   ],
 
   backgroundColorOverride: null,
@@ -225,7 +231,7 @@ export const about: AboutConfig = {
   bio: "<p>Arjun Vellanki, who goes by the stage name Swirlx, is a Washington, D.C. based musician, DJ, and producer who was raised in India and has pursued music throughout his life. From playing piano at a young age to learning how to produce electronic music in 2019, his journey has always been rooted in emotion and connection.</p>" + 
        "<p>Now emerging as an upcoming artist, Swirlx is driven by a passion to create music that speaks to the heart, writing tracks that allow listeners to get lost in their emotions and feel understood. Fusing melodic bass with melodies that are both beautiful and aching, Swirlx crafts songs for those navigating the highs and lows of life, offering a place to escape, reflect, and heal. <3</p>",
   image: "/images/Swirlx.png",
-  imageAlt: "Swirlx Artist photo",
+  imageAlt: "Swirlx",
 
   backgroundColorOverride: null,
   backgroundImage: null,
