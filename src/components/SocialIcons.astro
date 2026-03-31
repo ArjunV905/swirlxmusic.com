@@ -48,9 +48,14 @@ const platformLabels: Record<string, string> = {
   linktree: "Linktree",
 };
 
-const activeSocials = Object.entries(socials).filter(
-  ([, url]) => url != null && url!.trim() !== ""
-) as [keyof SocialsConfig, string][];
+const displayOrder: (keyof SocialsConfig)[] = [
+  "spotify", "appleMusic", "tidal", "soundcloud", "youtube",
+  "instagram", "tiktok", "twitter", "facebook", "bandcamp", "linktree",
+];
+
+const activeSocials = displayOrder
+  .filter((key) => socials[key] != null && socials[key]!.trim() !== "")
+  .map((key) => [key, socials[key]!] as [keyof SocialsConfig, string]);
 ---
 
 {activeSocials.length > 0 && (
