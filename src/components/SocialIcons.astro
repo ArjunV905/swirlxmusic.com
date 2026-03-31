@@ -64,13 +64,14 @@ const activeSocials = displayOrder
       const Icon = iconMap[platform];
       const label = platformLabels[platform] || platform;
       return (
-        <li>
+        <li class="social-icons__item">
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
             class="social-icons__link"
+            data-tooltip={label}
           >
             <Icon size={size} />
           </a>
@@ -89,6 +90,10 @@ const activeSocials = displayOrder
     justify-content: center;
   }
 
+  .social-icons__item {
+    position: relative;
+  }
+
   .social-icons__link {
     display: flex;
     align-items: center;
@@ -102,5 +107,31 @@ const activeSocials = displayOrder
     opacity: 1;
     color: var(--color-accent);
     transform: scale(1.15);
+  }
+
+  .social-icons__link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    padding: 0.3rem 0.6rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .social-icons__link:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
   }
 </style>
