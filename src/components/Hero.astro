@@ -9,10 +9,11 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
 ---
 
 <section class="hero" id="hero">
-  <!-- Background layer (fixed) -->
-  {hasImage ? (
+  <!-- Background layers (fixed) — image and animation can coexist -->
+  {hasImage && (
     <div class="hero__bg hero__bg--image" style={`background-image: url('${hero.backgroundImage}')`} aria-hidden="true" />
-  ) : (
+  )}
+  {hero.animationEnabled && (
     <div class="hero__bg hero__bg--canvas" aria-hidden="true">
       <ParticleCanvas color={hero.particleColor || theme.accentColor} client:only="react" />
     </div>
@@ -41,19 +42,28 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
 
     let ticking = false;
 
+    function update() {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      const progress = Math.min(scrollY / (vh * 0.5), 1);
+      const opacity = 1 - progress;
+
+      center!.style.opacity = String(opacity);
+      center!.style.pointerEvents = opacity <= 0 ? "none" : "auto";
+      center!.style.visibility = opacity <= 0 ? "hidden" : "visible";
+    }
+
     function onScroll() {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const vh = window.innerHeight;
-          const progress = Math.min(scrollY / (vh * 0.5), 1);
-          center!.style.opacity = String(1 - progress);
+          update();
           ticking = false;
         });
         ticking = true;
       }
     }
 
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
@@ -71,37 +81,37 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
     overflow: hidden;
   }
 
-  /* Fixed background */
+  /* Fixed background layers — canvas renders above image when both are present */
   .hero__bg {
     position: fixed;
     inset: 0;
-    z-index: 0;
   }
 
   .hero__bg--image {
+    z-index: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
 
   .hero__bg--canvas {
+    z-index: 1;
     pointer-events: none;
   }
 
-  /* Fixed centered content */
+  /* Fixed centered content — starts hidden to prevent flash; JS sets correct opacity immediately */
   .hero__center {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 10%;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     text-align: center;
-    pointer-events: auto;
-    transition: opacity 0.1s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     will-change: opacity;
   }
 

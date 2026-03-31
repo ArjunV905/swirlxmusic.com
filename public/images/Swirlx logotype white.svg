@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="6.25in"
-   height="6.25in"
-   viewBox="0 0 158.75 158.75"
+   width="7in"
+   height="1.7in"
+   viewBox="0 0 177.80001 43.180001"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
@@ -15,7 +15,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview7"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#999999"
      borderopacity="1"
      inkscape:pageshadow="0"
@@ -24,17 +24,18 @@
      inkscape:document-units="mm"
      showgrid="false"
      units="in"
-     width="6.5in"
+     width="7in"
      inkscape:snap-object-midpoints="true"
      inkscape:zoom="1.5554293"
-     inkscape:cx="235.62627"
-     inkscape:cy="299.9172"
+     inkscape:cx="143.04732"
+     inkscape:cy="175.8357"
      inkscape:window-width="2560"
      inkscape:window-height="1369"
-     inkscape:window-x="2552"
-     inkscape:window-y="922"
+     inkscape:window-x="-8"
+     inkscape:window-y="1432"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     height="1.7in" />
   <defs
      id="defs2">
     <g
@@ -46,7 +47,7 @@
      id="layer1">
     <g
        id="g893"
-       transform="translate(-2.4742268e-7,9.5257734)"
+       transform="translate(19.031149,-47.095084)"
        style="fill:#ffffff;fill-opacity:1">
       <g
          inkscape:label="Layer 1"
@@ -126,7 +127,7 @@
                  style="fill:#ffffff;fill-opacity:1">
                 <path
                    id="path849"
-                   style="stroke-width:1.33333;fill:#ffffff;fill-opacity:1"
+                   style="fill:#ffffff;fill-opacity:1;stroke-width:1.33333"
                    transform="matrix(0.75,0,0,0.75,-172.54355,-247.01437)"
                    d="m 245.03711,242.35156 v 87 h 21.22851 v -87 z" />
               </g>

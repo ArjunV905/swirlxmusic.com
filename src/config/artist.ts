@@ -59,6 +59,7 @@ export interface SocialsConfig {
 
 export interface HeroConfig {
   backgroundImage: string | null;
+  animationEnabled: boolean;
   particleColor?: string;
 }
 
@@ -122,9 +123,9 @@ export const artist: ArtistConfig = {
 /** [REQUIRED] Visual theme — colors and fonts */
 export const theme: ThemeConfig = {
   primaryColor: "#ffffff",
-  accentColor: "#6c63ff",
-  backgroundColor: "#0a0a0a",
-  surfaceColor: "#141414",
+  accentColor: "#b629de",
+  backgroundColor: "#020202",
+  surfaceColor: "#060606",
   textColor: "#e0e0e0",
   fontHeading: "Outfit",
   fontBody: "Inter",
@@ -148,16 +149,20 @@ export const socials: SocialsConfig = {
   linktree: null,
 };
 
-/** Links that control nav visibility */
+/** 
+ * Additional Links that are displayed in the nav
+ * Can be a URL or a local file path. Hidden if null. 
+ */
 export const externalLinks = {
   merch: null as string | null,
-  epk: null as string | null,
+  epk: "/Swirlx EPK.pdf",
 };
 
-/** Hero section — set backgroundImage to an image path, or null for particle animation */
+/** Hero section — customize the background image and animation */
 export const hero: HeroConfig = {
   backgroundImage: null,
-  particleColor: "#6c63ff",
+  animationEnabled: true,
+  particleColor: theme.accentColor, // or use Hex codes like "#6c63ff"
 };
 
 /** [OPTIONAL] Latest music release CTA */
