@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { about, theme } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
 
@@ -9,12 +10,12 @@ const { style: sectionStyle } = getSectionStyles(about, theme.surfaceColor);
   <div class="section__inner about">
     <h2 class="section__heading">{about.heading}</h2>
     <div class="about__content">
-      <img
+      <Image
         src={about.image}
         alt={about.imageAlt}
         class="about__image"
-        width="500"
-        height="500"
+        width={500}
+        height={600}
         loading="lazy"
       />
       <div class="about__text" set:html={about.bio} />

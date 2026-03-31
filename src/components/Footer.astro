@@ -10,7 +10,7 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
   <div class="footer__inner">
     <div class="footer__left">
       {hasLogotype ? (
-        <img src={artist.logotype!} alt={`${artist.name} logo`} class="footer__logo" width="120" height="36" />
+        <img src={artist.logotype!} alt={`${artist.name} logo`} class="footer__logo" width="120" height="36" loading="lazy" />
       ) : (
         <span class="footer__name">{artist.name}</span>
       )}

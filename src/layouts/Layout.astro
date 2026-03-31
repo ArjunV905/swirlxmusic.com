@@ -26,7 +26,7 @@ const fontsParam =
   headingFont === bodyFont
     ? `family=${headingFont}:wght@400;500;600;700`
     : `family=${headingFont}:wght@400;500;600;700&family=${bodyFont}:wght@300;400;500;600`;
-const googleFontsUrl = `https://fonts.googleapis.com/css2?${fontsParam}&display=swap`;
+const googleFontsUrl = `https://fonts.googleapis.com/css2?${fontsParam}&display=optional`;
 
 const activeSocials = Object.entries(socials).filter(
   ([, url]) => url != null && url.trim() !== ""
@@ -73,9 +73,10 @@ const structuredData = {
     <link rel="icon" type="image/svg+xml" href={artist.favicon} />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts — preloaded to minimize CLS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href={googleFontsUrl} as="style" />
     <link rel="stylesheet" href={googleFontsUrl} />
 
     <!-- Structured Data -->

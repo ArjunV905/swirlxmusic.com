@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { latestRelease, theme } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
 
@@ -22,12 +23,12 @@ const platformLabels: Record<string, string> = {
   <div class="section__inner release">
     <p class="release__tagline">{latestRelease.tagline}</p>
     <div class="release__content">
-      <img
+      <Image
         src={latestRelease.image}
         alt={latestRelease.imageAlt}
         class="release__artwork"
-        width="400"
-        height="400"
+        width={400}
+        height={400}
         loading="lazy"
       />
       <div class="release__info">
