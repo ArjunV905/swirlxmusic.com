@@ -18,17 +18,18 @@ const { style: sectionStyle } = getSectionStyles(tourDates, defaultBg);
       <a
         class="bit-widget-initializer"
         data-artist-name={tourDates.bandsintown.artistName}
+        data-follow-section-position="hidden"
         data-display-local-dates="false"
         data-display-past-dates="false"
+        data-display-lineup="false"
+        data-display-play-my-city="true"
+        data-display-start-time="false"
         data-auto-style="false"
         data-text-color={theme.textColor}
         data-link-color={theme.accentColor}
         data-background-color="transparent"
         data-display-limit="10"
-        data-display-start-time="false"
         data-link-text-color={theme.textColor}
-        data-display-lineup="false"
-        data-display-play-my-city="true"
         data-separator-color="rgba(255,255,255,0.1)"
       ></a>
     </div>
@@ -42,5 +43,16 @@ const { style: sectionStyle } = getSectionStyles(tourDates, defaultBg);
     max-width: 800px;
     margin: 0 auto;
     min-height: 200px;
+  }
+
+  .tour__widget :global(.bit-button), .tour__widget :global(.bit-play-my-city-cta) {
+    background-color: var(--color-accent) !important;
+    color: var(--color-bg) !important;
+    border: 1px solid var(--color-accent) !important;
+    border-radius: 100px !important;
+  }
+
+  .tour__widget :global(.bit-button:hover), .tour__widget :global(.bit-play-my-city-cta:hover) {
+    opacity: 0.85 !important;
   }
 </style>

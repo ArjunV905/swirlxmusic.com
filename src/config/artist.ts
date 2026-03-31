@@ -216,6 +216,7 @@ export const newsletter: NewsletterConfig = {
   enabled: false,
   heading: "Newsletter",
   subheading: "Get updates on new releases, shows, and more.",
+  
   backgroundColorOverride: null,
   backgroundImage: null,
 };
