@@ -5,6 +5,11 @@ import { getSectionStyles } from "../utils/sectionStyle";
 if (!newsletter.enabled) return;
 
 const { style: sectionStyle } = getSectionStyles(newsletter, theme.backgroundColor);
+
+const embedHtml = await import("../config/newsletter-embed.html?raw").then(
+  (m) => m.default
+);
+const hasEmbed = embedHtml.replace(/<!--[\s\S]*?-->/g, "").trim().length > 0;
 ---
 
 <section class="section" style={sectionStyle} id="newsletter">
@@ -13,21 +18,31 @@ const { style: sectionStyle } = getSectionStyles(newsletter, theme.backgroundCol
     {newsletter.subheading && (
       <p class="nl__sub">{newsletter.subheading}</p>
     )}
-    <form class="nl__form" action={newsletter.formActionUrl} method="POST" target="_blank">
-      <div class="nl__input-group">
-        <input
-          type="email"
-          name={newsletter.emailFieldName}
-          placeholder="Enter your email"
-          required
-          autocomplete="email"
-          class="nl__input"
-        />
-        <button type="submit" class="nl__btn">Subscribe</button>
-      </div>
-    </form>
+    {hasEmbed && (
+      <div class="nl__embed" id="nl-embed" set:html={embedHtml} />
+    )}
   </div>
 </section>
+
+{hasEmbed && (
+  <script is:inline>
+    (function () {
+      var container = document.getElementById("nl-embed");
+      if (!container) return;
+      var scripts = container.querySelectorAll("script");
+      scripts.forEach(function (original) {
+        var script = document.createElement("script");
+        if (original.src) {
+          script.src = original.src;
+        } else {
+          script.textContent = original.textContent;
+        }
+        original.parentNode.removeChild(original);
+        document.body.appendChild(script);
+      });
+    })();
+  </script>
+)}
 
 <style>
   .nl {
@@ -43,67 +58,9 @@ const { style: sectionStyle } = getSectionStyles(newsletter, theme.backgroundCol
     max-width: 50ch;
   }
 
-  .nl__form {
+  .nl__embed {
     width: 100%;
-  }
-
-  .nl__input-group {
     display: flex;
-    gap: 0;
-    max-width: 480px;
-    margin: 0 auto;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 100px;
-    overflow: hidden;
-    transition: border-color 0.2s ease;
-  }
-
-  .nl__input-group:focus-within {
-    border-color: var(--color-accent);
-  }
-
-  .nl__input {
-    flex: 1;
-    padding: 0.85rem 1.5rem;
-    font-size: 0.95rem;
-    background: transparent;
-    color: var(--color-text);
-    min-width: 0;
-  }
-
-  .nl__input::placeholder {
-    color: var(--color-text);
-    opacity: 0.4;
-  }
-
-  .nl__btn {
-    padding: 0.85rem 2rem;
-    background: var(--color-accent);
-    color: var(--color-bg);
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-  }
-
-  .nl__btn:hover {
-    opacity: 0.85;
-  }
-
-  @media (max-width: 480px) {
-    .nl__input-group {
-      flex-direction: column;
-      border-radius: 12px;
-    }
-
-    .nl__input {
-      text-align: center;
-    }
-
-    .nl__btn {
-      border-radius: 0 0 11px 11px;
-    }
+    justify-content: center;
   }
 </style>

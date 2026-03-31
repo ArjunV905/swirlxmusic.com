@@ -93,8 +93,6 @@ export interface NewsletterConfig extends SectionStyle {
   enabled: boolean;
   heading: string;
   subheading: string;
-  formActionUrl: string;
-  emailFieldName: string;
 }
 
 export interface AboutConfig extends SectionStyle {
@@ -213,14 +211,11 @@ export const tourDates: TourDatesConfig = {
   backgroundImage: null,
 };
 
-/** [OPTIONAL] Newsletter signup */
+/** [OPTIONAL] Newsletter signup — paste embed code in src/config/newsletter-embed.html */
 export const newsletter: NewsletterConfig = {
-  enabled: true,
+  enabled: false,
   heading: "Newsletter",
   subheading: "Get updates on new releases, shows, and more.",
-  formActionUrl: "",
-  emailFieldName: "email",
-
   backgroundColorOverride: null,
   backgroundImage: null,
 };

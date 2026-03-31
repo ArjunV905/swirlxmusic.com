@@ -158,8 +158,8 @@ Priority: theme color < `backgroundColorOverride` < `backgroundImage`. If a back
 | `enabled` | `boolean` | Show/hide this section |
 | `heading` | `string` | Section heading |
 | `subheading` | `string` | Subtitle text |
-| `formActionUrl` | `string` | Your form endpoint URL (Mailchimp, ConvertKit, etc.) |
-| `emailFieldName` | `string` | The `name` attribute for the email input (default: `"email"`) |
+
+The newsletter form itself is provided via an **embed code file** at `src/config/newsletter-embed.html`. Paste your provider's embed code (Mailchimp, ConvertKit, Beehiiv, Substack, etc.) into that file. The embed is rendered inside a centered container below the heading and subheading. If the file contains only comments or is empty, no form is shown.
 
 ### `about` (required)
 
@@ -209,7 +209,8 @@ For deeper customization:
 ```
 src/
   config/
-    artist.ts          ← THE ONLY FILE YOU NEED TO EDIT
+    artist.ts              ← THE ONLY FILE YOU NEED TO EDIT
+    newsletter-embed.html  ← Paste your newsletter provider's embed code here
   layouts/
     Layout.astro       ← HTML shell, SEO meta, theme injection
   components/
