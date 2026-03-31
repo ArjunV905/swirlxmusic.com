@@ -8,7 +8,7 @@ const hasImage = hero.backgroundImage != null && hero.backgroundImage.trim() !==
 const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
 ---
 
-<section class="hero" id="hero">
+<section class="hero" id="home">
   <!-- Background layers (fixed) — image and animation can coexist -->
   {hasImage && (
     <div class="hero__bg hero__bg--image" style={`background-image: url('${hero.backgroundImage}')`} aria-hidden="true" />
