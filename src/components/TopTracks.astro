@@ -1,10 +1,13 @@
 ---
-import { topTracks, theme } from "../config/artist";
+import { topTracks } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
+
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
 
 if (!topTracks.enabled) return;
 
-const { style: sectionStyle } = getSectionStyles(topTracks, theme.backgroundColor);
+const { style: sectionStyle } = getSectionStyles(topTracks, defaultBg);
 ---
 
 <section class="section" style={sectionStyle} id="top-tracks">

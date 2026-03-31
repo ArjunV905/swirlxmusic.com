@@ -8,17 +8,43 @@ import Newsletter from "../components/Newsletter.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
+import {
+  theme,
+  latestRelease,
+  topTracks,
+  tourDates,
+  newsletter,
+} from "../config/artist";
+
+const sections = [
+  { key: "latestRelease", enabled: latestRelease.enabled },
+  { key: "topTracks", enabled: topTracks.enabled },
+  { key: "tourDates", enabled: tourDates.enabled },
+  { key: "newsletter", enabled: newsletter.enabled },
+  { key: "about", enabled: true },
+  { key: "contact", enabled: true },
+];
+
+const colors = [theme.surfaceColor, theme.backgroundColor];
+const bgMap: Record<string, string> = {};
+let colorIndex = 0;
+for (const section of sections) {
+  if (section.enabled) {
+    bgMap[section.key] = colors[colorIndex % 2];
+    colorIndex++;
+  }
+}
 ---
 
 <Layout>
   <Hero />
   <main>
-    <LatestRelease />
-    <TopTracks />
-    <TourDates />
-    <Newsletter />
-    <About />
-    <Contact />
+    <LatestRelease defaultBg={bgMap.latestRelease} />
+    <TopTracks defaultBg={bgMap.topTracks} />
+    <TourDates defaultBg={bgMap.tourDates} />
+    <Newsletter defaultBg={bgMap.newsletter} />
+    <About defaultBg={bgMap.about} />
+    <Contact defaultBg={bgMap.contact} />
   </main>
   <Footer />
 </Layout>

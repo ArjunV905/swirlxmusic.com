@@ -1,10 +1,13 @@
 ---
-import { newsletter, theme } from "../config/artist";
+import { newsletter } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
+
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
 
 if (!newsletter.enabled) return;
 
-const { style: sectionStyle } = getSectionStyles(newsletter, theme.backgroundColor);
+const { style: sectionStyle } = getSectionStyles(newsletter, defaultBg);
 
 const embedHtml = await import("../config/newsletter-embed.html?raw").then(
   (m) => m.default

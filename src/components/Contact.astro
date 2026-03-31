@@ -1,8 +1,11 @@
 ---
-import { contact, theme } from "../config/artist";
+import { contact } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
 
-const { style: sectionStyle } = getSectionStyles(contact, theme.backgroundColor);
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
+
+const { style: sectionStyle } = getSectionStyles(contact, defaultBg);
 ---
 
 <section class="section" style={sectionStyle} id="contact">

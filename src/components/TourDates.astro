@@ -2,10 +2,13 @@
 import { tourDates, theme } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
 
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
+
 if (!tourDates.enabled) return;
 
 const artistName = encodeURIComponent(tourDates.bandsintown.artistName);
-const { style: sectionStyle } = getSectionStyles(tourDates, theme.surfaceColor);
+const { style: sectionStyle } = getSectionStyles(tourDates, defaultBg);
 ---
 
 <section class="section" style={sectionStyle} id="shows">

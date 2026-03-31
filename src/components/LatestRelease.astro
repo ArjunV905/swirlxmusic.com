@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import { latestRelease, theme } from "../config/artist";
+import { latestRelease } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
+
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
 
 if (!latestRelease.enabled) return;
 
-const { style: sectionStyle } = getSectionStyles(latestRelease, theme.surfaceColor);
-
+const { style: sectionStyle } = getSectionStyles(latestRelease, defaultBg);
 ---
 
 <section class="section" style={sectionStyle} id="latest-release">

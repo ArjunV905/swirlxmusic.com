@@ -1,9 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import { about, theme } from "../config/artist";
+import { about } from "../config/artist";
 import { getSectionStyles } from "../utils/sectionStyle";
 
-const { style: sectionStyle } = getSectionStyles(about, theme.surfaceColor);
+interface Props { defaultBg: string; }
+const { defaultBg } = Astro.props;
+
+const { style: sectionStyle } = getSectionStyles(about, defaultBg);
 ---
 
 <section class="section" style={sectionStyle} id="about">
