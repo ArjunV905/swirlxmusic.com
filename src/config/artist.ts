@@ -127,8 +127,8 @@ export const artist: ArtistConfig = {
   logotype: "/images/Swirlx logotype white.svg",
   favicon: "/favicon.svg",
   seo: {
-    title: "Swirlx | Official Website",
-    description: "Official website of Swirlx. Discover music, shows, and more.",
+    title: "Swirlx",
+    description: "Official website for DJ & Producer Swirlx. Listen to the latest tracks on Spotify and Apple Music, check tour dates, and more.",
     ogImage: "/images/ogImage.png",
     keywords: ["swirlx", "music", "artist", "electronic", "EDM", "melodic bass", "future bass"],
     siteUrl: "https://swirlxmusic.com",
