@@ -17,6 +17,7 @@ const { style: sectionStyle } = getSectionStyles(tourDates, defaultBg);
     <div class="tour__widget" id="bandsintown-widget">
       <a
         class="bit-widget-initializer"
+        aria-label="Bandsintown tour dates"
         data-artist-name={tourDates.bandsintown.artistName}
         data-follow-section-position="hidden"
         data-display-local-dates="false"
@@ -31,7 +32,9 @@ const { style: sectionStyle } = getSectionStyles(tourDates, defaultBg);
         data-display-limit="10"
         data-link-text-color={theme.textColor}
         data-separator-color="rgba(255,255,255,0.1)"
-      ></a>
+      >
+        <span class="visually-hidden">Bandsintown tour dates</span>
+      </a>
     </div>
   </div>
 </section>
