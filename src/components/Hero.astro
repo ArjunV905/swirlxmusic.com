@@ -106,6 +106,10 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
   .hero__center {
     position: fixed;
     top: clamp(6%, 10vh, 12%);
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -116,6 +120,15 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
     visibility: hidden;
     pointer-events: none;
     will-change: opacity;
+  }
+
+  /* Inset nav from viewport edges on narrow screens when many links wrap */
+  .hero :global(.hero__nav) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: max(clamp(0.75rem, 6.5vw, 2rem), env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(0.75rem, 6.5vw, 2rem), env(safe-area-inset-right, 0px));
   }
 
   .hero__logotype {
