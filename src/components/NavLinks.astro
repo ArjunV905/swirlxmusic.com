@@ -10,6 +10,8 @@ const { class: className = "" } = Astro.props;
 const showShows = tourDates.enabled;
 const showEpk = externalLinks.epk != null && externalLinks.epk.trim() !== "";
 const showShop = externalLinks.merch != null && externalLinks.merch.trim() !== "";
+const showServices =
+  externalLinks.services != null && externalLinks.services.trim() !== "";
 ---
 
 <nav class:list={["nav-links", className]} aria-label="Main navigation">
@@ -29,6 +31,13 @@ const showShop = externalLinks.merch != null && externalLinks.merch.trim() !== "
       <li>
         <a href={externalLinks.merch!} class="nav-links__link" target="_blank" rel="noopener noreferrer">
           Shop
+        </a>
+      </li>
+    )}
+    {showServices && (
+      <li>
+        <a href={externalLinks.services!} class="nav-links__link" target="_blank" rel="noopener noreferrer">
+          Services
         </a>
       </li>
     )}

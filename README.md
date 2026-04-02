@@ -105,6 +105,7 @@ Supported platforms: `spotify`, `appleMusic`, `youtube`, `instagram`, `tiktok`, 
 |---|---|---|
 | `merch` | `string \| null` | URL to merch store. Shows "Shop" in nav when set. |
 | `epk` | `string \| null` | URL to EPK PDF. Shows "EPK" in nav when set. |
+| `services` | `string \| null` | URL (or path) for services such as Mixing & Mastering. Shows "Services" in nav when set. |
 
 ### `hero`
 

@@ -160,6 +160,7 @@ export const socials: SocialsConfig = {
 export const externalLinks = {
   merch: null as string | null,
   epk: "/Swirlx EPK.pdf",
+  services: "https://soundbetter.com/profiles/621428-swirlx",
 };
 
 /** 
