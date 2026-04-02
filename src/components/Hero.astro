@@ -44,7 +44,8 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
 
     function update() {
       const scrollY = window.scrollY;
-      const vh = window.innerHeight;
+      const vh =
+        window.visualViewport?.height ?? window.innerHeight;
       const progress = Math.min(scrollY / (vh * 0.5), 1);
       const opacity = 1 - progress;
 
@@ -73,7 +74,9 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
 <style>
   .hero {
     position: relative;
-    height: 100vh;
+    /* 100vh is often taller than the visible area on mobile (URL bar), hiding bottom content.
+       svh/dvh match the actual viewport better. */
+    height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +105,7 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
   /* Fixed centered content — starts hidden to prevent flash; JS sets correct opacity immediately */
   .hero__center {
     position: fixed;
-    top: 10%;
+    top: clamp(6%, 10vh, 12%);
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -116,13 +119,22 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
   }
 
   .hero__logotype {
-    max-width: min(80vw, 500px);
+    max-width: min(85vw, 500px);
     height: auto;
     object-fit: contain;
   }
 
+  .hero :global(.nav-links__list) {
+    gap: clamp(0.75rem, 3vw, 2rem);
+  }
+
+  .hero :global(.nav-links__link) {
+    font-size: clamp(0.55rem, 2.1vw + 0.35rem, 0.8rem);
+    letter-spacing: clamp(0.1em, 0.5vw + 0.1em, 0.2em);
+  }
+
   .hero__title {
-    font-size: clamp(3rem, 10vw, 7rem);
+    font-size: clamp(2rem, 9vw + 0.5rem, 7rem);
     font-weight: 700;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -133,15 +145,24 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
   /* Bottom social icons - scrolls with the hero section */
   .hero__bottom {
     position: absolute;
-    bottom: 2rem;
+    bottom: max(2rem, env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    padding-inline: 0.5rem;
+  }
+
+  .hero__bottom :global(.social-icons) {
+    gap: clamp(0.65rem, 3vw, 1.25rem);
   }
 
   @media (max-width: 640px) {
     .hero__title {
-      font-size: clamp(2rem, 12vw, 4rem);
+      font-size: clamp(1.75rem, 10vw + 0.25rem, 4rem);
+    }
+
+    .hero__logotype {
+      width: clamp(8rem, 58vw, 18rem);
     }
   }
 </style>

@@ -114,7 +114,7 @@ export const theme: ThemeConfig = {
   primaryColor: "#ffffff",
   accentColor: "#e6214f", // or "#b629de",
   backgroundColor: "#020202",
-  surfaceColor: "#060606",
+  surfaceColor: "#090909",
   textColor: "#e0e0e0",
 
   fontHeading: "Outfit",
