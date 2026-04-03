@@ -16,9 +16,16 @@ import LinktreeIcon from "../icons/Linktree.astro";
 interface Props {
   size?: number;
   class?: string;
+  /** When set (e.g. hex), overrides default icon color for this row. */
+  iconColor?: string | null;
 }
 
-const { size = 22, class: className = "" } = Astro.props;
+const { size = 22, class: className = "", iconColor } = Astro.props;
+
+const listStyle =
+  iconColor != null && iconColor.trim() !== ""
+    ? ({ "--social-icon-color": iconColor.trim() } as Record<string, string>)
+    : undefined;
 
 const iconMap: Record<string, any> = {
   spotify: SpotifyIcon,
@@ -59,7 +66,7 @@ const activeSocials = displayOrder
 ---
 
 {activeSocials.length > 0 && (
-  <ul class:list={["social-icons", className]} role="list">
+  <ul class:list={["social-icons", className]} style={listStyle} role="list">
     {activeSocials.map(([platform, url]) => {
       const Icon = iconMap[platform];
       const label = platformLabels[platform] || platform;
@@ -98,7 +105,7 @@ const activeSocials = displayOrder
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text);
+    color: var(--social-icon-color, var(--color-text));
     opacity: 0.7;
     transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }

@@ -114,6 +114,7 @@ Supported platforms: `spotify`, `appleMusic`, `youtube`, `instagram`, `tiktok`, 
 | `backgroundImage` | `string \| null` | Path to hero background image (e.g. `"/images/hero.jpg"`). `null` for no image. |
 | `animationEnabled` | `boolean` | Whether to show the particle animation. Can be combined with `backgroundImage` to overlay particles on top of an image. |
 | `particleColor` | `string` | Color of particles in the animation (hex). Defaults to accent color. |
+| `navAndSocialColor` | `string \| null` | Optional hex color for hero nav link text and the hero row of social icons (footer social icons are unchanged). `null` for default color. |
 
 ### Section Background Customization
 

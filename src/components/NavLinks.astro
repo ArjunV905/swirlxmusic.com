@@ -3,9 +3,16 @@ import { tourDates, externalLinks } from "../config/artist";
 
 interface Props {
   class?: string;
+  /** When set (e.g. hex), overrides default link color for this nav instance. */
+  linkColor?: string | null;
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = "", linkColor } = Astro.props;
+
+const navStyle =
+  linkColor != null && linkColor.trim() !== ""
+    ? ({ "--nav-link-color": linkColor.trim() } as Record<string, string>)
+    : undefined;
 
 const showShows = tourDates.enabled;
 const showEpk = externalLinks.epk != null && externalLinks.epk.trim() !== "";
@@ -14,7 +21,7 @@ const showServices =
   externalLinks.services != null && externalLinks.services.trim() !== "";
 ---
 
-<nav class:list={["nav-links", className]} aria-label="Main navigation">
+<nav class:list={["nav-links", className]} style={navStyle} aria-label="Main navigation">
   <ul class="nav-links__list" role="list">
     <li><a href="#home" class="nav-links__link">Home</a></li>
     {showShows && <li><a href="#shows" class="nav-links__link">Shows</a></li>}
@@ -59,7 +66,7 @@ const showServices =
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--color-text);
+    color: var(--nav-link-color, var(--color-text));
     opacity: 0.85;
     transition: opacity 0.2s ease, color 0.2s ease;
     white-space: nowrap;

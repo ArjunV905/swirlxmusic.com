@@ -26,12 +26,12 @@ const hasLogotype = artist.logotype != null && artist.logotype.trim() !== "";
     ) : (
       <h1 class="hero__title">{artist.name}</h1>
     )}
-    <NavLinks class="hero__nav" />
+    <NavLinks class="hero__nav" linkColor={hero.navAndSocialColor} />
   </div>
 
   <!-- Bottom row: social icons (scrolls with page) -->
   <div class="hero__bottom">
-    <SocialIcons size={20} />
+    <SocialIcons size={20} iconColor={hero.navAndSocialColor} />
   </div>
 </section>
 

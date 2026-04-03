@@ -60,6 +60,7 @@ export interface HeroConfig {
   backgroundImage: string | null;
   animationEnabled: boolean;
   particleColor?: string;
+  navAndSocialColor?: string | null;
 }
 
 export interface SectionStyle {
@@ -171,6 +172,7 @@ export const hero: HeroConfig = {
   backgroundImage: "/images/thumbnail.jpg",
   animationEnabled: true,
   particleColor: theme.accentColor, // or use Hex codes like "#6c63ff"
+  navAndSocialColor: null,          // optional: overrides the nav links and social icons color
 };
 
 
