@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="https://github.com/ArjunV905/swirlxmusic.com/main/public/favicon.svg" width="100" height="100" />
+  <img alt="Logo" src="https://github.com/ArjunV905/swirlxmusic.com/blob/main/public/favicon.svg" width="100" height="100" />
 </div>
 <h1 align="center">
   swirlxmusic.com
