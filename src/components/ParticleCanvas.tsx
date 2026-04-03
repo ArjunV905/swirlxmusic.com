@@ -11,9 +11,9 @@ interface Particle {
 
 // ── Tunable constants ──────────────────────────────────────────────
 const CONFIG = {
-  particleCount: 80,
+  particleDensity: 3,
   connectionDistance: 150,
-  cursorConnectionMultiplier: 1.5,
+  cursorConnectionMultiplier: 1.5,//1.5,
 
   particleMinRadius: 1,
   particleMaxRadius: 3,
@@ -21,17 +21,18 @@ const CONFIG = {
   particleMaxOpacity: 0.7,
   particleSpeed: 0.5,
 
-  lineWidth: 0.5,
-  lineMaxOpacity: 0.3,
-  cursorLineWidth: 0.8,
-  cursorLineMaxOpacity: 0.5,
+  lineWidth: 0.5, //0.5
+  lineMaxOpacity: 0.6,
+  cursorLineWidth: 2,
+  cursorLineMaxOpacity: 0.8,
 
   glowEnabled: true,
-  glowIntensity: 15,
-  glowPulseInterval: 4,
-  glowPulseDuration: 1.4,
+  glowIntensity: 18,
+  glowPulseDuration: 16,
+  glowPulseGap: 0,
+  glowSweepWidth: 0.12,
   glowPulseSpread: 0.15,
-  glowPulseBrightness: 3,
+  glowPulseBrightness: 10,
 };
 
 interface Props {
@@ -52,6 +53,25 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
     let particles: Particle[] = [];
     const mouse = { x: -1000, y: -1000 };
 
+    function targetCount(w: number, h: number) {
+      return Math.max(1, Math.round(CONFIG.particleDensity * (w * h) / 100_000));
+    }
+
+    function spawnParticle(): Particle {
+      return {
+        x: Math.random() * canvas!.width,
+        y: Math.random() * canvas!.height,
+        vx: (Math.random() - 0.5) * CONFIG.particleSpeed,
+        vy: (Math.random() - 0.5) * CONFIG.particleSpeed,
+        radius:
+          Math.random() * (CONFIG.particleMaxRadius - CONFIG.particleMinRadius) +
+          CONFIG.particleMinRadius,
+        opacity:
+          Math.random() * (CONFIG.particleMaxOpacity - CONFIG.particleMinOpacity) +
+          CONFIG.particleMinOpacity,
+      };
+    }
+
     function resize() {
       const oldW = canvas!.width;
       const oldH = canvas!.height;
@@ -67,23 +87,22 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
           p.y = Math.min(p.y * sy, canvas!.height);
         }
       }
+
+      const desired = targetCount(canvas!.width, canvas!.height);
+      if (particles.length > desired) {
+        particles.length = desired;
+      } else {
+        while (particles.length < desired) {
+          particles.push(spawnParticle());
+        }
+      }
     }
 
     function createParticles() {
+      const count = targetCount(canvas!.width, canvas!.height);
       particles = [];
-      for (let i = 0; i < CONFIG.particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas!.width,
-          y: Math.random() * canvas!.height,
-          vx: (Math.random() - 0.5) * CONFIG.particleSpeed,
-          vy: (Math.random() - 0.5) * CONFIG.particleSpeed,
-          radius:
-            Math.random() * (CONFIG.particleMaxRadius - CONFIG.particleMinRadius) +
-            CONFIG.particleMinRadius,
-          opacity:
-            Math.random() * (CONFIG.particleMaxOpacity - CONFIG.particleMinOpacity) +
-            CONFIG.particleMinOpacity,
-        });
+      for (let i = 0; i < count; i++) {
+        particles.push(spawnParticle());
       }
     }
 
@@ -105,48 +124,45 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
       baseOpacity: number,
       width: number,
       glowStrength: number,
-      pulseProgress: number,
-      reversed: boolean,
+      pulseIntensity: number,
+      sweepPx: number,
     ) {
-      const hasPulse = CONFIG.glowEnabled && pulseProgress >= 0;
-
-      if (hasPulse) {
-        const fade = 1 - pulseProgress;
-        ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${baseOpacity * fade})`;
-        ctx!.shadowBlur = glowStrength * CONFIG.glowIntensity * fade;
-      } else {
-        ctx!.shadowBlur = 0;
-        ctx!.shadowColor = "transparent";
-      }
-
       ctx!.beginPath();
       ctx!.moveTo(x1, y1);
       ctx!.lineTo(x2, y2);
       ctx!.lineWidth = width;
 
-      if (hasPulse) {
-        const gx1 = reversed ? x2 : x1;
-        const gy1 = reversed ? y2 : y1;
-        const gx2 = reversed ? x1 : x2;
-        const gy2 = reversed ? y1 : y2;
+      if (pulseIntensity > 0) {
+        const peakOpacity = Math.min(
+          baseOpacity * (1 + pulseIntensity * (CONFIG.glowPulseBrightness - 1)),
+          1,
+        );
+        ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${peakOpacity * pulseIntensity})`;
+        ctx!.shadowBlur = glowStrength * CONFIG.glowIntensity * pulseIntensity;
 
-        const grad = ctx!.createLinearGradient(gx1, gy1, gx2, gy2);
+        const dx = x2 - x1;
+        const lineT = Math.abs(dx) > 1
+          ? Math.max(0, Math.min(1, (sweepPx - x1) / dx))
+          : 0.5;
+
         const spread = CONFIG.glowPulseSpread;
-        const peakOpacity = Math.min(baseOpacity * CONFIG.glowPulseBrightness, 1);
+        const lo = Math.max(0, lineT - spread);
+        const hi = Math.min(1, lineT + spread);
+
         const base = `rgba(${r}, ${g}, ${b}, ${baseOpacity})`;
         const peak = `rgba(${r}, ${g}, ${b}, ${peakOpacity})`;
 
-        const lo = Math.max(0, pulseProgress - spread);
-        const hi = Math.min(1, pulseProgress + spread);
-
+        const grad = ctx!.createLinearGradient(x1, y1, x2, y2);
         grad.addColorStop(0, base);
         grad.addColorStop(lo, base);
-        grad.addColorStop(pulseProgress, peak);
+        grad.addColorStop(lineT, peak);
         grad.addColorStop(hi, base);
         grad.addColorStop(1, base);
 
         ctx!.strokeStyle = grad;
       } else {
+        ctx!.shadowBlur = 0;
+        ctx!.shadowColor = "transparent";
         ctx!.strokeStyle = `rgba(${r}, ${g}, ${b}, ${baseOpacity})`;
       }
 
@@ -158,11 +174,17 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
       const h = canvas!.height;
       ctx!.clearRect(0, 0, w, h);
 
-      let pulseProgress = -1;
+      const sweepW = CONFIG.glowSweepWidth;
+      let sweepNorm = -2;
+      let sweepPx = -2 * w;
+
       if (CONFIG.glowEnabled) {
-        const elapsed = (performance.now() / 1000) % CONFIG.glowPulseInterval;
+        const cycle = CONFIG.glowPulseDuration + CONFIG.glowPulseGap;
+        const elapsed = (performance.now() / 1000) % cycle;
         if (elapsed < CONFIG.glowPulseDuration) {
-          pulseProgress = elapsed / CONFIG.glowPulseDuration;
+          const t = elapsed / CONFIG.glowPulseDuration;
+          sweepNorm = -sweepW + t * (1 + 2 * sweepW);
+          sweepPx = sweepNorm * w;
         }
       }
 
@@ -190,13 +212,17 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
 
           if (dist < CONFIG.connectionDistance) {
             const t = 1 - dist / CONFIG.connectionDistance;
+            const midNorm = (p.x + p2.x) / (2 * w);
+            const intensity = sweepNorm > -2
+              ? Math.max(0, 1 - Math.abs(sweepNorm - midNorm) / sweepW)
+              : 0;
             drawLine(
               p.x, p.y, p2.x, p2.y,
               t * CONFIG.lineMaxOpacity,
               CONFIG.lineWidth,
               t,
-              pulseProgress,
-              (i + j) % 2 === 0,
+              intensity,
+              sweepPx,
             );
           }
         }
@@ -206,13 +232,17 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
         const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
         if (mDist < cursorDist) {
           const t = 1 - mDist / cursorDist;
+          const midNorm = (p.x + mouse.x) / (2 * w);
+          const intensity = sweepNorm > -2
+            ? Math.max(0, 1 - Math.abs(sweepNorm - midNorm) / sweepW)
+            : 0;
           drawLine(
             p.x, p.y, mouse.x, mouse.y,
             t * CONFIG.cursorLineMaxOpacity,
             CONFIG.cursorLineWidth,
             t * 1.5,
-            pulseProgress,
-            i % 2 === 0,
+            intensity,
+            sweepPx,
           );
         }
       }
