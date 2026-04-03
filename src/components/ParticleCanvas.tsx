@@ -11,7 +11,8 @@ interface Particle {
 
 // ── Tunable constants ──────────────────────────────────────────────
 const CONFIG = {
-  particleDensity: 3,
+  particleDensity: 7,               // Higher = more particles
+  particleDensityFalloff: 0.75,     // 1 = linear, < 1 = less dense as screen size increases
   connectionDistance: 150,
   cursorConnectionMultiplier: 1.5,
 
@@ -54,7 +55,10 @@ export default function ParticleCanvas({ color = "#6c63ff" }: Props) {
     const mouse = { x: -1000, y: -1000 };
 
     function targetCount(w: number, h: number) {
-      return Math.max(1, Math.round(CONFIG.particleDensity * (w * h) / 100_000));
+      const areaUnits = (w * h) / 100_000;
+      return Math.max(1, Math.round(
+        CONFIG.particleDensity * Math.pow(areaUnits, CONFIG.particleDensityFalloff),
+      ));
     }
 
     function spawnParticle(): Particle {
