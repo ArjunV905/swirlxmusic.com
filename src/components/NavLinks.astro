@@ -61,6 +61,13 @@ const showServices =
   }
 
   .nav-links__link {
+    isolation: isolate;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0em 0.6em;
+    border-radius: 20px;
     font-family: var(--font-heading);
     font-size: 0.8rem;
     font-weight: 500;
@@ -72,8 +79,28 @@ const showServices =
     white-space: nowrap;
   }
 
+  .nav-links__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--nav-link-color, var(--color-bg));
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    z-index: -1;
+  }
+
+  .nav-links__link:hover::before {
+    opacity: 0.4;
+  }
+
   .nav-links__link:hover {
     opacity: 1;
     color: var(--color-accent);
+  }
+
+  .nav-links__link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 </style>
