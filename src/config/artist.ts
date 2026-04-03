@@ -169,7 +169,7 @@ export const externalLinks = {
  * Customize the background image and animation 
  */
 export const hero: HeroConfig = {
-  backgroundImage: "/images/thumbnail.jpg",
+  backgroundImage: "/images/Chasing Fire Background.jpg",
   animationEnabled: true,
   particleColor: theme.accentColor, // or use Hex codes like "#6c63ff"
   navAndSocialColor: null,          // optional: overrides the nav links and social icons color
