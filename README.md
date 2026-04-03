@@ -186,6 +186,40 @@ Examples:
 
 ---
 
+## OG Image Generation
+
+A script is included to automatically generate an Open Graph image (`public/images/ogImage.png`) by screenshotting the site at 1200×630.
+
+### Using the batch script (Windows)
+
+```bash
+# Capture from the local dev server (must be running via npm run dev)
+.\capture-og.bat
+
+# Capture from the production URL (read from artist.seo.siteUrl)
+.\capture-og.bat --prod
+```
+
+### Using the node script directly
+
+```bash
+# Default — captures from http://localhost:4321
+node scripts/capture-og.mjs
+
+# Custom URL
+node scripts/capture-og.mjs https://your-site.com
+```
+
+### Using the npm shortcut
+
+```bash
+npm run og
+```
+
+> The script hides scrollbars and strips the Astro dev toolbar before capturing.
+
+---
+
 ## Customization Beyond `artist.ts`
 
 For deeper customization:
@@ -202,37 +236,41 @@ For deeper customization:
 ## Project Structure
 
 ```
-src/
-  config/
-    artist.ts              ← THE ONLY FILE YOU NEED TO EDIT
-    newsletter-embed.html  ← Paste your newsletter provider's embed code here
-  layouts/
-    Layout.astro       ← HTML shell, SEO meta, theme injection
-  components/
-    Hero.astro         ← Full-viewport hero section
-    ParticleCanvas.tsx ← Interactive particle animation (React)
-    NavLinks.astro     ← Navigation links (auto-hides unused)
-    SocialIcons.astro  ← Social media icon row
-    LatestRelease.astro← New release CTA banner
-    TopTracks.astro    ← Spotify embed
-    TourDates.astro    ← Bandsintown widget
-    Newsletter.astro   ← Email signup form
-    About.astro        ← Bio + photo
-    Contact.astro      ← Contact entries grid
-    Footer.astro       ← Logo + copyright + social links
-  utils/
-    validate.ts        ← Build-time validation (don't edit)
-    sectionStyle.ts    ← Section background helper (don't edit)
-  icons/
-    *.astro            ← SVG icon components
-  styles/
-    global.css         ← Reset, typography, section base styles
-  pages/
-    index.astro        ← Home page (assembles all sections)
-public/
-  images/              ← Place your images here
-  fonts/               ← Place custom font files here (if any)
-  favicon.svg          ← Replace with your favicon
+├── src/
+│   ├── config/
+│   │   ├── artist.ts              ← Artist and site information                      [REQUIRED]
+│   │   └── newsletter-embed.html  ← Paste your newsletter embed code here
+│   ├── layouts/
+│   │   └── Layout.astro           ← HTML shell, SEO meta, theme injection
+│   ├── components/
+│   │   ├── Hero.astro             ← Full-viewport hero section
+│   │   ├── ParticleCanvas.tsx     ← Interactive particle animation (React)
+│   │   ├── NavLinks.astro         ← Navigation links (auto-hides unused)
+│   │   ├── SocialIcons.astro      ← Social media icon row
+│   │   ├── LatestRelease.astro    ← New release CTA banner
+│   │   ├── TopTracks.astro        ← Spotify embed
+│   │   ├── TourDates.astro        ← Bandsintown widget
+│   │   ├── Newsletter.astro       ← Email signup form
+│   │   ├── About.astro            ← Bio + photo
+│   │   ├── Contact.astro          ← Contact entries grid
+│   │   └── Footer.astro           ← Logo + copyright + social links
+│   ├── utils/
+│   │   ├── validate.ts            ← Build-time validation (don't edit)
+│   │   └── sectionStyle.ts        ← Section background helper (don't edit)
+│   ├── icons/
+│   │   └── *.astro                ← SVG icon components
+│   ├── styles/
+│   │   └── global.css             ← Reset, typography, section base styles
+│   └── pages/
+│       └── index.astro            ← Home page (assembles all sections)
+├── public/
+│   ├── images/                    ← Place your images here
+│   ├── fonts/                     ← Place custom font files here (if any)
+│   └── favicon.svg                ← Replace with your favicon
+├── scripts/
+│   └── capture-og.mjs            ← Puppeteer script to generate OG image
+├── astro.config.mjs               ← Add your website url here                        [REQUIRED]
+└── capture-og.bat                 ← Windows batch wrapper (supports --prod flag)
 ```
 
 ---
