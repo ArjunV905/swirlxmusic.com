@@ -16,7 +16,7 @@
 ## Prerequisites
 
 - **Node.js** >= 22.12.0
-- **npm** (comes with Node)
+- Git
 
 ---
 
