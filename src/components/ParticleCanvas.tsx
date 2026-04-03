@@ -13,15 +13,15 @@ interface Particle {
 const CONFIG = {
   particleDensity: 3,
   connectionDistance: 150,
-  cursorConnectionMultiplier: 1.5,//1.5,
+  cursorConnectionMultiplier: 1.5,
 
   particleMinRadius: 1,
   particleMaxRadius: 3,
-  particleMinOpacity: 0.2,
-  particleMaxOpacity: 0.7,
+  particleMinOpacity: 0.5,//0.2,
+  particleMaxOpacity: 0.9,//0.7,
   particleSpeed: 0.5,
 
-  lineWidth: 0.5, //0.5
+  lineWidth: 0.5,
   lineMaxOpacity: 0.6,
   cursorLineWidth: 2,
   cursorLineMaxOpacity: 0.8,
