@@ -1,24 +1,17 @@
-# swirlxmusic.com
+<div align="center">
+  <img alt="Logo" src="https://github.com/ArjunV905/swirlxmusic.com/blob/main/public/favicon.svg" width="100" height="100" />
+</div>
+<h1 align="center">
+  swirlxmusic.com
+</h1>
+<p align="center">
+  An artist website built for Swirlx, hosted at <a href="https://swirlxmusic.com" target="_blank">swirlxmusic.com</a>. Built with <a href="https://astro.build" target="_blank">Astro</a>, <a href="https://react.dev/" target="_blank">React</a>, and deployed using <a href="https://vercel.com/" target="_blank">Vercel</a>.
+</p>
+<p align="center">
+  Customize the entire site by editing a single file — `src/config/artist.ts`.
+</p>
 
-An artist website built for Swirlx. Built with [Astro](https://astro.build), [React](https://react.dev), and deployable to [Vercel](https://vercel.com) with zero configuration.
-
-**Customize the entire site by editing a single file** — `src/config/artist.ts`.
-
----
-
-## Features
-
-- Single-page layout with parallax hero, smooth-scroll navigation
-- Interactive particle animation background (or custom hero image)
-- Full theming — colors, fonts, and backgrounds driven from config
-- Modular sections: Latest Release, Top Tracks (Spotify embed), Tour Dates (Bandsintown widget), Newsletter signup, About, Contact
-- Optional sections automatically hidden when not configured
-- Required fields validated at build time (prevents broken deploys)
-- SEO: Open Graph, Twitter Cards, JSON-LD structured data, canonical URLs, sitemap
-- Static output for fast load times, Vercel Web Analytics ready
-- Responsive and accessible
-
----
+![demo](https://raw.githubusercontent.com/ArjunV905/swirlxmusic.com/blob/main/public/images/site-preview-thumbnail.jpg)
 
 ## Prerequisites
 
@@ -37,8 +30,8 @@ cd swirlxmusic.com
 # 2. Install dependencies
 npm install
 
-# 3. Edit the config file with your artist info
-#    Open src/config/artist.ts in your editor
+# 3. Edit src/config/artist.ts with your artist info  !!
+#    Edit astro.config.mjs with your website url      !!
 
 # 4. Start the dev server
 npm run dev
