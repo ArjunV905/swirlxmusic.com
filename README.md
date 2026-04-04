@@ -73,18 +73,18 @@ npm run preview
 │   ├── components/
 │   │   ├── Hero.astro             ← Full-viewport hero section
 │   │   ├── ParticleCanvas.tsx     ← Interactive particle animation (React)
-│   │   ├── NavLinks.astro         ← Navigation links (auto-hides unused)
+│   │   ├── NavLinks.astro         ← Navigation links
 │   │   ├── SocialIcons.astro      ← Social media icon row
-│   │   ├── LatestRelease.astro    ← New release CTA banner
-│   │   ├── TopTracks.astro        ← Spotify embed
-│   │   ├── TourDates.astro        ← Bandsintown widget
-│   │   ├── Newsletter.astro       ← Email signup form
-│   │   ├── About.astro            ← Bio + photo
-│   │   ├── Contact.astro          ← Contact entries grid
+│   │   ├── LatestRelease.astro    ← New song/album release CTA section
+│   │   ├── TopTracks.astro        ← Spotify embed section
+│   │   ├── TourDates.astro        ← Bandsintown widget section
+│   │   ├── Newsletter.astro       ← Email signup form section
+│   │   ├── About.astro            ← Bio + photo section
+│   │   ├── Contact.astro          ← Contact entries grid section
 │   │   └── Footer.astro           ← Logo + copyright + social links
 │   ├── utils/
-│   │   ├── validate.ts            ← Build-time validation (don't edit)
-│   │   └── sectionStyle.ts        ← Section background helper (don't edit)
+│   │   ├── validate.ts            ← Build-time validation
+│   │   └── sectionStyle.ts        ← Section background helper
 │   ├── icons/
 │   │   └── *.astro                ← SVG icon components
 │   ├── styles/
@@ -96,9 +96,10 @@ npm run preview
 │   ├── fonts/                     ← Place custom font files here (if any)
 │   └── favicon.svg                ← Replace with your favicon
 ├── scripts/
-│   └── capture-og.mjs            ← Puppeteer script to generate OG image
+│   └── capture-og.mjs             ← Core script to generate OG image
 ├── astro.config.mjs               ← Add your website url here                    [REQUIRED]
-└── capture-og.bat                 ← Windows batch wrapper (supports --prod flag)
+├── capture-og.bat                 ← og:Image script for Windows
+└── capture-og.sh                  ← og:Image script for Mac/Linux
 ```
 
 ---
