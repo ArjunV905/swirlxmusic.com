@@ -20,6 +20,78 @@
 
 ---
 
+## Getting Started
+
+> **New to all of this?** No worries — follow the steps below in order. Each one links to a short guide that will walk you through it.
+
+### Step 1 — Create a GitHub Account
+
+GitHub is where the code for your website lives. You'll need a free account.
+
+- [Create a GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) (if you don't already have one)
+
+### Step 2 — Fork This Repository
+
+Forking creates your own copy of this project under your GitHub account. You'll make all your changes there.
+
+- Open this repo's page on GitHub and click the **Fork** button in the top-right corner
+- [How to fork a repository (GitHub guide)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+
+### Step 3 — Set Up Your Tools
+
+You need two things installed on your computer:
+
+| Tool | What it's for | Install link |
+|---|---|---|
+| **Node.js** (>= 22.12.0) | Runs the website locally on your machine | [Download Node.js](https://nodejs.org/) |
+| **Git** | Tracks changes and syncs them with GitHub | [Download Git](https://git-scm.com/downloads) |
+
+Then pick an editor to work with the code. **VS Code** is recommended — it's free, beginner-friendly, and has a built-in terminal:
+
+- [Download VS Code](https://code.visualstudio.com/)
+
+> **Prefer a visual Git app?** [GitHub Desktop](https://desktop.github.com/) lets you clone, commit, push, and pull without using the command line. Great if you're not comfortable with a terminal yet.
+
+### Step 4 — Clone Your Fork Locally
+
+Cloning downloads your forked repo to your computer so you can edit it.
+
+**Option A — Using the terminal (in VS Code or otherwise):**
+```bash
+git clone https://github.com/YOUR-USERNAME/swirlxmusic.com.git
+cd swirlxmusic.com
+```
+
+**Option B — Using GitHub Desktop:**
+Open GitHub Desktop → *File* → *Clone Repository* → select your fork.
+
+- [Cloning a repository (GitHub guide)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=desktop)
+
+### Step 5 — Authenticate Git (So You Can Push Changes)
+
+Before you can push your changes back to GitHub, Git needs to know who you are. The easiest method is HTTPS with a personal access token or the GitHub CLI.
+
+- [Set up Git authentication (GitHub guide)](https://docs.github.com/en/get-started/getting-started-with-git/set-up-git)
+- [Authenticating with GitHub from the command line](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line)
+
+> If you use **GitHub Desktop**, authentication is handled for you when you sign in to the app.
+
+### Step 6 — Deploy with Vercel (Free Hosting)
+
+Once you have made your changes to the `src/config/artist.ts`, `astro.config.mjs`, `/public/*` files and have pushed your changes to GitHub, you are ready to deploy your website. We'll be using Vercel, which will automatically build and host your website every time you push changes to GitHub.
+
+1. Go to [vercel.com](https://vercel.com/) and sign up.
+2. Link your GitHub account in Vercel
+3. Click **Add New Project** → Import your forked repository
+4. Vercel auto-detects Astro — just click **Deploy**
+5. Your site is live! Vercel gives you a free `.vercel.app` URL, and you can later connect a custom domain.
+
+- [Vercel Getting Started guide](https://vercel.com/docs/getting-started)
+- [How to add a custom domain on Vercel](https://vercel.com/docs/projects/domains/add-a-domain)
+
+> Remember to update `artist.seo.siteUrl` and the `site` field in `astro.config.mjs` to match your production domain.
+---
+
 ## Quick Start
 
 ```bash
@@ -40,17 +112,6 @@ npm run dev
 ./capture-og.bat  # on Windows
 ./capture-og.sh   # on Mac/Linux
 ```
-
----
-
-## Deployment (Vercel)
-
-1. Push your repo to GitHub
-2. Go to [vercel.com](https://vercel.com) and import your repository
-3. Vercel auto-detects Astro — no build settings needed
-4. Done. Your site is live.
-
-> Remember to update `artist.seo.siteUrl` and the `site` field in `astro.config.mjs` to match your production domain.
 
 ---
 
