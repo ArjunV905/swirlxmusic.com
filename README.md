@@ -24,20 +24,20 @@
 
 > **New to all of this?** No worries — follow the steps below in order. Each one links to a short guide that will walk you through it.
 
-### Step 1 — Create a GitHub Account
+### Step 1 - Create a GitHub Account
 
 GitHub is where the code for your website lives. You'll need a free account.
 
 - [Create a GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) (if you don't already have one)
 
-### Step 2 — Fork This Repository
+### Step 2 - Fork This Repository
 
 Forking creates your own copy of this project under your GitHub account. You'll make all your changes there.
 
 - Open this repo's page on GitHub and click the **Fork** button in the top-right corner
 - [How to fork a repository (GitHub guide)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 
-### Step 3 — Set Up Your Tools
+### Step 3 - Set Up Your Tools
 
 You need two things installed on your computer:
 
@@ -52,7 +52,7 @@ Then pick an editor to work with the code. **VS Code** is recommended — it's f
 
 > **Prefer a visual Git app?** [GitHub Desktop](https://desktop.github.com/) lets you clone, commit, push, and pull without using the command line. Great if you're not comfortable with a terminal yet.
 
-### Step 4 — Clone Your Fork Locally
+### Step 4 - Clone Your Fork Locally
 
 Cloning downloads your forked repo to your computer so you can edit it.
 
@@ -62,12 +62,12 @@ git clone https://github.com/YOUR-USERNAME/swirlxmusic.com.git
 cd swirlxmusic.com
 ```
 
-**Option B — Using GitHub Desktop:**
+**Option B - Using GitHub Desktop:**
 Open GitHub Desktop → *File* → *Clone Repository* → select your fork.
 
 - [Cloning a repository (GitHub guide)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=desktop)
 
-### Step 5 — Authenticate Git (So You Can Push Changes)
+### Step 5 - Authenticate Git (So You Can Push Changes)
 
 Before you can push your changes back to GitHub, Git needs to know who you are. The easiest method is HTTPS with a personal access token or the GitHub CLI.
 
@@ -76,7 +76,7 @@ Before you can push your changes back to GitHub, Git needs to know who you are. 
 
 > If you use **GitHub Desktop**, authentication is handled for you when you sign in to the app.
 
-### Step 6 — Deploy with Vercel (Free Hosting)
+### Step 6 - Deploy with Vercel (Free Hosting)
 
 Once you have made your changes to the `src/config/artist.ts`, `astro.config.mjs`, `/public/*` files and have pushed your changes to GitHub, you are ready to deploy your website. We'll be using Vercel, which will automatically build and host your website every time you push changes to GitHub.
 
@@ -108,7 +108,7 @@ npm install
 # 4. Start the dev server (runs at http://localhost:4321)
 npm run dev
 
-# 5. [Optional] Generate an Open Graph image for your website (for a website preview when sharing the website link)
+# 5. [Optional] Generate an Open Graph image for your website (for website link previews)
 ./capture-og.bat  # on Windows
 ./capture-og.sh   # on Mac/Linux
 ```
