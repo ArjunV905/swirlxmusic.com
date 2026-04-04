@@ -42,6 +42,10 @@ npm run build
 
 # 6. Preview the production build locally
 npm run preview
+
+# 7. [Optional] Generate an Open Graph image for your website (for a website preview when sharing the website link)
+./capture-og.bat  # on Windows
+./capture-og.sh   # on Mac/Linux
 ```
 
 ---
@@ -54,6 +58,48 @@ npm run preview
 4. Done. Your site is live.
 
 > Remember to update `artist.seo.siteUrl` and the `site` field in `astro.config.mjs` to match your production domain.
+
+---
+
+## Project Structure
+
+```
+├── src/
+│   ├── config/
+│   │   ├── artist.ts              ← Artist and site information                   [REQUIRED]
+│   │   └── newsletter-embed.html  ← Paste your newsletter embed code here
+│   ├── layouts/
+│   │   └── Layout.astro           ← HTML shell, SEO meta, theme injection
+│   ├── components/
+│   │   ├── Hero.astro             ← Full-viewport hero section
+│   │   ├── ParticleCanvas.tsx     ← Interactive particle animation (React)
+│   │   ├── NavLinks.astro         ← Navigation links (auto-hides unused)
+│   │   ├── SocialIcons.astro      ← Social media icon row
+│   │   ├── LatestRelease.astro    ← New release CTA banner
+│   │   ├── TopTracks.astro        ← Spotify embed
+│   │   ├── TourDates.astro        ← Bandsintown widget
+│   │   ├── Newsletter.astro       ← Email signup form
+│   │   ├── About.astro            ← Bio + photo
+│   │   ├── Contact.astro          ← Contact entries grid
+│   │   └── Footer.astro           ← Logo + copyright + social links
+│   ├── utils/
+│   │   ├── validate.ts            ← Build-time validation (don't edit)
+│   │   └── sectionStyle.ts        ← Section background helper (don't edit)
+│   ├── icons/
+│   │   └── *.astro                ← SVG icon components
+│   ├── styles/
+│   │   └── global.css             ← Reset, typography, section base styles
+│   └── pages/
+│       └── index.astro            ← Home page (assembles all sections)
+├── public/
+│   ├── images/                    ← Place your images here
+│   ├── fonts/                     ← Place custom font files here (if any)
+│   └── favicon.svg                ← Replace with your favicon
+├── scripts/
+│   └── capture-og.mjs            ← Puppeteer script to generate OG image
+├── astro.config.mjs               ← Add your website url here                    [REQUIRED]
+└── capture-og.bat                 ← Windows batch wrapper (supports --prod flag)
+```
 
 ---
 
@@ -178,12 +224,6 @@ The newsletter form itself is provided via an **embed code file** at `src/config
 
 Place all images in the `public/images/` directory. Reference them in `artist.ts` with paths like `/images/your-file.jpg`.
 
-Examples:
-- Hero background: `/images/hero.jpg`
-- Album art: `/images/album-cover.jpg`
-- About photo: `/images/about.jpg`
-- OG image: `/images/og.png` (recommended: 1200x630px)
-
 ---
 
 ## OG Image Generation
@@ -198,6 +238,16 @@ A script is included to automatically generate an Open Graph image (`public/imag
 
 # Capture from the production URL (read from artist.seo.siteUrl)
 .\capture-og.bat --prod
+```
+
+### Using the batch script (Mac/Linux)
+
+```bash
+# Capture from the local dev server (must be running via npm run dev)
+.\capture-og.sh
+
+# Capture from the production URL (read from artist.seo.siteUrl)
+.\capture-og.sh --prod
 ```
 
 ### Using the node script directly
@@ -216,8 +266,6 @@ node scripts/capture-og.mjs https://your-site.com
 npm run og
 ```
 
-> The script hides scrollbars and strips the Astro dev toolbar before capturing.
-
 ---
 
 ## Customization Beyond `artist.ts`
@@ -229,48 +277,5 @@ For deeper customization:
 - **Section order**: Reorder components in `src/pages/index.astro`
 - **Icons**: Add new SVG icons in `src/icons/` following the existing pattern
 - **Astro config**: `astro.config.mjs` controls build output, integrations, and deployment adapter
-
-
----
-
-## Project Structure
-
-```
-├── src/
-│   ├── config/
-│   │   ├── artist.ts              ← Artist and site information                      [REQUIRED]
-│   │   └── newsletter-embed.html  ← Paste your newsletter embed code here
-│   ├── layouts/
-│   │   └── Layout.astro           ← HTML shell, SEO meta, theme injection
-│   ├── components/
-│   │   ├── Hero.astro             ← Full-viewport hero section
-│   │   ├── ParticleCanvas.tsx     ← Interactive particle animation (React)
-│   │   ├── NavLinks.astro         ← Navigation links (auto-hides unused)
-│   │   ├── SocialIcons.astro      ← Social media icon row
-│   │   ├── LatestRelease.astro    ← New release CTA banner
-│   │   ├── TopTracks.astro        ← Spotify embed
-│   │   ├── TourDates.astro        ← Bandsintown widget
-│   │   ├── Newsletter.astro       ← Email signup form
-│   │   ├── About.astro            ← Bio + photo
-│   │   ├── Contact.astro          ← Contact entries grid
-│   │   └── Footer.astro           ← Logo + copyright + social links
-│   ├── utils/
-│   │   ├── validate.ts            ← Build-time validation (don't edit)
-│   │   └── sectionStyle.ts        ← Section background helper (don't edit)
-│   ├── icons/
-│   │   └── *.astro                ← SVG icon components
-│   ├── styles/
-│   │   └── global.css             ← Reset, typography, section base styles
-│   └── pages/
-│       └── index.astro            ← Home page (assembles all sections)
-├── public/
-│   ├── images/                    ← Place your images here
-│   ├── fonts/                     ← Place custom font files here (if any)
-│   └── favicon.svg                ← Replace with your favicon
-├── scripts/
-│   └── capture-og.mjs            ← Puppeteer script to generate OG image
-├── astro.config.mjs               ← Add your website url here                        [REQUIRED]
-└── capture-og.bat                 ← Windows batch wrapper (supports --prod flag)
-```
 
 ---
