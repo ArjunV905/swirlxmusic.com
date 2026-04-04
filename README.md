@@ -30,20 +30,13 @@ cd swirlxmusic.com
 # 2. Install dependencies
 npm install
 
-# 3. Edit src/config/artist.ts with your artist info  !!
-#    Edit astro.config.mjs with your website url      !!
+# 3. Edit src/config/artist.ts with your artist info  [IMPORTANT]
+#    Edit astro.config.mjs with your website url      [IMPORTANT]
 
-# 4. Start the dev server
+# 4. Start the dev server (runs at http://localhost:4321)
 npm run dev
-# Site runs at http://localhost:4321
 
-# 5. Build for production
-npm run build
-
-# 6. Preview the production build locally
-npm run preview
-
-# 7. [Optional] Generate an Open Graph image for your website (for a website preview when sharing the website link)
+# 5. [Optional] Generate an Open Graph image for your website (for a website preview when sharing the website link)
 ./capture-og.bat  # on Windows
 ./capture-og.sh   # on Mac/Linux
 ```
@@ -64,9 +57,13 @@ npm run preview
 ## Project Structure
 
 ```
+├── public/                                                                       [REQUIRED]
+│   ├── images/                    ← Place your images here
+│   ├── fonts/                     ← Place custom font files here (if any)
+│   └── favicon.svg                ← Replace with your favicon
 ├── src/
 │   ├── config/
-│   │   ├── artist.ts              ← Artist and site information                   [REQUIRED]
+│   │   ├── artist.ts              ← Artist and site information                  [REQUIRED]
 │   │   └── newsletter-embed.html  ← Paste your newsletter embed code here
 │   ├── layouts/
 │   │   └── Layout.astro           ← HTML shell, SEO meta, theme injection
@@ -91,10 +88,6 @@ npm run preview
 │   │   └── global.css             ← Reset, typography, section base styles
 │   └── pages/
 │       └── index.astro            ← Home page (assembles all sections)
-├── public/
-│   ├── images/                    ← Place your images here
-│   ├── fonts/                     ← Place custom font files here (if any)
-│   └── favicon.svg                ← Replace with your favicon
 ├── scripts/
 │   └── capture-og.mjs             ← Core script to generate OG image
 ├── astro.config.mjs               ← Add your website url here                    [REQUIRED]
