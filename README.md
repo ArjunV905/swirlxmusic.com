@@ -15,15 +15,16 @@
 
 ## Features
 
-- About section (Artist photo + bio)
-- Contact section (Emails)
-- 4 optional sections
+- Social Media links
+- Merch, EPK, and Services links
+- Main sections:
+  - About section (Artist photo + bio)
+  - Contact section (Emails)
+- Additional sections:
   - Latest Song/Album Release
   - Spotify Top Tracks
   - Tour Dates (using Bandsintown)
   - Newsletter / Email Signup
-- Social Media links
-- Merch, EPK, and Services links (Optional)
 
 ---
 
