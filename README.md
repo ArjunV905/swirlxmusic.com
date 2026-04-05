@@ -8,10 +8,24 @@
   An artist website built for Swirlx, hosted at <a href="https://swirlxmusic.com" target="_blank">swirlxmusic.com</a>. Built with <a href="https://astro.build" target="_blank">Astro</a>, <a href="https://react.dev/" target="_blank">React</a>, and deployed using <a href="https://vercel.com/" target="_blank">Vercel</a>.
 </p>
 <p align="center">
-  Customize the entire site by editing a single file — `src/config/artist.ts`.
+  Customize the entire site by editing a single file - `src/config/artist.ts`.
 </p>
 
 ![demo](https://raw.githubusercontent.com/ArjunV905/swirlxmusic.com/main/public/images/site-preview-thumbnail.jpg)
+
+## Features
+
+- About section (Artist photo + bio)
+- Contact section (Emails)
+- 4 optional sections
+  - Latest Song/Album Release
+  - Spotify Top Tracks
+  - Tour Dates (using Bandsintown)
+  - Newsletter / Email Signup
+- Social Media links
+- Merch, EPK, and Services links (Optional)
+
+---
 
 ## Prerequisites
 
@@ -22,7 +36,7 @@
 
 ## Getting Started
 
-> **New to all of this?** No worries — follow the steps below in order. Each one links to a short guide that will walk you through it.
+> **New to all of this?** No worries - follow the steps below in order. Each one links to a short guide that will walk you through it.
 
 ### Step 1 - Create a GitHub Account
 
@@ -46,7 +60,7 @@ You need two things installed on your computer:
 | **Node.js** (>= 22.12.0) | Runs the website locally on your machine | [Download Node.js](https://nodejs.org/) |
 | **Git** | Tracks changes and syncs them with GitHub | [Download Git](https://git-scm.com/downloads) |
 
-Then pick an editor to work with the code. **VS Code** is recommended — it's free, beginner-friendly, and has a built-in terminal:
+Then pick an editor to work with the code. **VS Code** is recommended - it's free, beginner-friendly, and has a built-in terminal:
 
 - [Download VS Code](https://code.visualstudio.com/)
 
@@ -56,7 +70,7 @@ Then pick an editor to work with the code. **VS Code** is recommended — it's f
 
 Cloning downloads your forked repo to your computer so you can edit it.
 
-**Option A — Using the terminal (in VS Code or otherwise):**
+**Option A - Using the terminal (in VS Code or otherwise):**
 ```bash
 git clone https://github.com/YOUR-USERNAME/swirlxmusic.com.git
 cd swirlxmusic.com
@@ -83,7 +97,7 @@ Once you have made your changes to the `src/config/artist.ts`, `astro.config.mjs
 1. Go to [vercel.com](https://vercel.com/) and sign up.
 2. Link your GitHub account in Vercel
 3. Click **Add New Project** → Import your forked repository
-4. Vercel auto-detects Astro — just click **Deploy**
+4. Vercel auto-detects Astro - just click **Deploy**
 5. Your site is live! Vercel gives you a free `.vercel.app` URL, and you can later connect a custom domain.
 
 - [Vercel Getting Started guide](https://vercel.com/docs/getting-started)
@@ -308,7 +322,7 @@ A script is included to automatically generate an Open Graph image (`public/imag
 ### Using the node script directly
 
 ```bash
-# Default — captures from http://localhost:4321
+# Default - captures from http://localhost:4321
 node scripts/capture-og.mjs
 
 # Custom URL
