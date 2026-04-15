@@ -32,14 +32,26 @@ const activeSocials = Object.entries(socials).filter(
   ([, url]) => url != null && url.trim() !== ""
 );
 
+const siteHomeUrl = new URL("/", artist.seo.siteUrl).href;
+
+/** @see https://developers.google.com/search/docs/appearance/site-names */
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: artist.name,
-  url: artist.seo.siteUrl,
-  description: artist.seo.description,
-  ...(ogImage && { image: ogImage }),
-  sameAs: activeSocials.map(([, url]) => url),
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: artist.name,
+      url: siteHomeUrl,
+    },
+    {
+      "@type": "MusicGroup",
+      name: artist.name,
+      url: artist.seo.siteUrl,
+      description: artist.seo.description,
+      ...(ogImage && { image: ogImage }),
+      sameAs: activeSocials.map(([, url]) => url),
+    },
+  ],
 };
 ---
 
