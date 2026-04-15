@@ -131,7 +131,7 @@ export const artist: ArtistConfig = {
     title: "Swirlx",
     description: "Official website for DJ & Producer Swirlx. Listen to the latest tracks on Spotify and Apple Music, check tour dates, and more.",
     ogImage: "/images/ogImage.png",
-    keywords: ["swirlx", "music", "artist", "electronic", "EDM", "melodic bass", "future bass"],
+    keywords: ["Swirlx", "Music", "Artist", "Electronic Music", "EDM", "Melodic Bass", "Future Bass"],
     siteUrl: "https://swirlxmusic.com",
   },
 };
