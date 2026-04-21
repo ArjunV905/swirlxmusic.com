@@ -110,7 +110,7 @@ All of your changes will be made in the `src/config/artist.ts` config file. Any 
 
 A one time setup is also required in the `astro.config.mjs` file, where you need to update the `site` field to match your final website url that you plan on using.
 
-> Read through the [`artist.ts` Reference](#artist-ts-reference) section below for details on every field you can change in the file.
+> Read through the [`artist.ts` Reference](#artistts-reference) section below for details on every field you can change in the file.
 
 ### Step 7 - Updating the Website Preview Image
 
