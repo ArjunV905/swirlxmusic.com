@@ -65,33 +65,64 @@ Then pick an editor to work with the code. **VS Code** is recommended - it's fre
 
 - [Download VS Code](https://code.visualstudio.com/)
 
-> **Prefer a visual Git app?** [GitHub Desktop](https://desktop.github.com/) lets you clone, commit, push, and pull without using the command line. Great if you're not comfortable with a terminal yet.
-
 ### Step 4 - Clone Your Fork Locally
 
 Cloning downloads your forked repo to your computer so you can edit it.
 
-**Option A - Using the terminal (in VS Code or otherwise):**
+**Recommended - Using GitHub Desktop:**
+Download [GitHub Desktop](https://desktop.github.com/).
+
+Open GitHub Desktop → *File* → *Clone Repository* → select your fork.
+
+- [Cloning a repository (GitHub guide)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=desktop)
+
+**Advanced - Using the terminal (in VS Code or otherwise):**
 ```bash
 git clone https://github.com/YOUR-USERNAME/swirlxmusic.com.git
 cd swirlxmusic.com
 ```
 
-**Option B - Using GitHub Desktop:**
-Open GitHub Desktop → *File* → *Clone Repository* → select your fork.
-
-- [Cloning a repository (GitHub guide)](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=desktop)
-
-### Step 5 - Authenticate Git (So You Can Push Changes)
-
-Before you can push your changes back to GitHub, Git needs to know who you are. The easiest method is HTTPS with a personal access token or the GitHub CLI.
+For this method, you will also need to set up Git authentication. The easiest method is HTTPS with a personal access token or the GitHub CLI.
 
 - [Set up Git authentication (GitHub guide)](https://docs.github.com/en/get-started/getting-started-with-git/set-up-git)
 - [Authenticating with GitHub from the command line](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line)
 
-> If you use **GitHub Desktop**, authentication is handled for you when you sign in to the app.
+### Step 5 - Running the Application Locally
 
-### Step 6 - Deploy with Vercel (Free Hosting)
+Open VS Code and select the folder you downloaded your repo to from Step 4. Then open a new terminal from the toolbar `Terminal > New Terminal`
+
+Run the following commands to start a local instance of the application, which displays a live preview that updates as you make changes to the files.
+```bash
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+The app will be running at [http://localhost:4321](http://localhost:4321).
+
+> If you encounter errors running npm that state 'Running scripts is disabled on this system', then select a different Terminal profile other than Powershell and try again
+
+### Step 6 - Changing the Website Content
+
+All of your changes will be made in the `src/config/artist.ts` config file. Any images should be stored in the `public/images/` folder and files (such as an EPK and the website icons/favicons) should be stored in the `public/` folder.
+
+A one time setup is also required in the `astro.config.mjs` file, where you need to update the `site` field to match your final website url that you plan on using.
+
+> Read through the [`artist.ts` Reference](#artist-ts-reference) section below for details on every field you can change in the file.
+
+### Step 7 - Updating the Website Preview Image
+
+When you share a link to your website's url on certain social media platforms, you will notice an image preview shows up. This is called an ogImage, and needs to be updated once you have updated the site with your content. Otherwise you will still see a preview of my existing Swirlx website.
+
+To update the image, run the following command:
+```bash
+./capture-og.bat  # on Windows
+./capture-og.sh   # on Mac/Linux
+```
+
+### Step 8 - Deploy with Vercel (Free Hosting)
 
 Once you have made your changes to the `src/config/artist.ts`, `astro.config.mjs`, `/public/*` files and have pushed your changes to GitHub, you are ready to deploy your website. We'll be using Vercel, which will automatically build and host your website every time you push changes to GitHub.
 
@@ -110,20 +141,16 @@ Once you have made your changes to the `src/config/artist.ts`, `astro.config.mjs
 ## Quick Start
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/ArjunV905/swirlxmusic.com.git
-cd swirlxmusic.com
-
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
+
+# 2. Start the dev server (runs at http://localhost:4321)
+npm run dev
 
 # 3. Edit src/config/artist.ts with your artist info  [IMPORTANT]
 #    Edit astro.config.mjs with your website url      [IMPORTANT]
 
-# 4. Start the dev server (runs at http://localhost:4321)
-npm run dev
-
-# 5. [Optional] Generate an Open Graph image for your website (for website link previews)
+# 4. Replace the existing Open Graph image of the website (for website link previews)
 ./capture-og.bat  # on Windows
 ./capture-og.sh   # on Mac/Linux
 ```
