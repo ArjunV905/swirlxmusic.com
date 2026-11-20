@@ -113,7 +113,7 @@ export interface ContactConfig extends SectionStyle {
 /** [REQUIRED] Visual theme — colors and fonts */
 export const theme: ThemeConfig = {
   primaryColor: "#ffffff",
-  accentColor: "#e6214f", // or "#b629de",
+  accentColor: "#ffd2f6", // or "#b629de",
   backgroundColor: "#020202",
   surfaceColor: "#090909",
   textColor: "#e0e0e0",
@@ -169,7 +169,7 @@ export const externalLinks = {
  * Customize the background image and animation 
  */
 export const hero: HeroConfig = {
-  backgroundImage: "/images/Chasing Fire Background.jpg",
+  backgroundImage: "/images/Gasoline wide.png",
   animationEnabled: true,
   particleColor: theme.accentColor, // or use Hex codes like "#6c63ff"
   navAndSocialColor: null,          // optional: overrides the nav links and social icons color
@@ -183,11 +183,11 @@ export const latestRelease: LatestReleaseConfig = {
   enabled: true,
   tagline: "OUT NOW",
   releaseType: "Single",
-  title: "Chasing Fire",
-  image: "/images/Chasing Fire.png",
-  imageAlt: "Chasing Fire",
+  title: "Gasoline",
+  image: "/images/Gasoline.png",
+  imageAlt: "Gasoline",
   streamingLinks: [
-    { label: "Listen Now", url: "https://www.submithub.com/link/swirlx-chasing-fire" },
+    { label: "Listen Now", url: "https://www.submithub.com/link/swirlx-gasoline-ft-opi" },
   ],
 
   backgroundColorOverride: null,
